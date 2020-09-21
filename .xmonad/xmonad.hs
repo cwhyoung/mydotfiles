@@ -16,6 +16,7 @@ import XMonad.Actions.WindowGo (runOrRaise)
 import XMonad.Actions.WithAll (sinkAll, killAll)
 import qualified XMonad.Actions.Search as S
 
+
     -- Data
 import Data.Char (isSpace)
 import Data.Monoid
@@ -630,32 +631,15 @@ grid     = renamed [Replace "grid"]
            $ mySpacing 4
            $ mkToggle (single MIRROR)
            $ Grid (16/10)
--- spirals  = renamed [Replace "spirals"]
---           $ avoidStruts
---           $ mySpacing' 4
---           $ spiral (6/7)
 threeCol = renamed [Replace "threeCol"]
            $ avoidStruts
            $ limitWindows 7
            $ mySpacing 3
            $ ThreeCol 1 (3/100) (1/3)
--- threeRow = renamed [Replace "threeRow"]
---           $ avoidStruts
---           $ limitWindows 7
---           $ mySpacing' 4
---           -- Mirror takes a layout and rotates it by 90 degrees.
---           -- So we are applying Mirror to the ThreeCol layout.
---           $ Mirror
---           $ ThreeCol 1 (3/100) (1/3)
 mcol = renamed [Replace "mcol"] 
              $ avoidStruts
              $ mySpacing 3  
              $ multiCol [1, 1, 1, 1, 1, 0] 1 0.01 (-0.5)
-vcut = renamed [Replace "vcut"]
-             $ limitWindows 12
-             $ mySpacing 3
-             $ Mirror
-             $ multiCol [1] 2 0.01 (0.5)
 tabs = renamed [Replace "tabs"]
            -- I cannot add spacing to this layout because it will
            -- add spacing between window and tabs which looks bad.
@@ -692,10 +676,7 @@ myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts float
                                  ||| floats
                                  ||| grid
                                  ||| noBorders tabs
---                                 ||| spirals
                                  ||| threeCol
---                                 ||| threeRow
-                                 ||| vcut
 
 xmobarEscape :: String -> String
 xmobarEscape = concatMap doubleLts
