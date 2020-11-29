@@ -156,8 +156,8 @@ myAppGrid = [ ("Audacity", "audacity")
                  , ("Emacs", "emacsclient -c -a emacs")
                  , ("Firefox", "firefox")
                  , ("Google Chrome", "google-chrome-stable")
-                 , ("Geany", "geany")
-                 , ("Geary", "geary")
+                 , ("Private Internet Access", "pia-client")
+                 , ("Evolution", "evolution")
                  , ("Gimp", "gimp")
                  , ("Kdenlive", "kdenlive")
                  , ("Alacritty", "WINIT_X11_SCALE_FACTOR=1 alacritty")
@@ -165,9 +165,13 @@ myAppGrid = [ ("Audacity", "audacity")
                  , ("LibreOffice Writer", "lowriter")
                  , ("LibreOffice Calc", "localc")
                  , ("OBS", "obs")
+                 , ("Vidcutter", "vidcutter")
+                 , ("NoMachine", "nomachine")
                  , ("Caja Files", "caja")
                  , ("Xmenu", "/home/w/.config/xmenu/xmenu.sh")
-                 ]
+                 , ("Reboot", "doas reboot")
+                 , ("Shutdown", "doas shutdown -h 1")
+                 , ("Sleep", "systemctl suspend") ] 
 
 treeselectAction :: TS.TSConfig (X ()) -> X ()
 treeselectAction a = TS.treeselectAction a
@@ -687,7 +691,7 @@ xmobarEscape = concatMap doubleLts
 myWorkspaces :: [String]
 myWorkspaces = clickable . (map xmobarEscape)
                -- $ ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
-               $ ["dev", "www", "sys", "doc", "vbox", "chat", "mus", "vid", "gfx"]
+               $ [" 1", " 2", " 3", " 4", " 5", " 6", " 7", " 8", " 9"]
   where
         clickable l = [ "<action=xdotool key super+" ++ show (n) ++ "> " ++ ws ++ " </action>" |
                       (i,ws) <- zip [1..9] l,
@@ -822,7 +826,7 @@ myKeys =
         , ("C-e a", spawn "emacsclient -c -a '' --eval '(emms)' --eval '(emms-play-directory-tree \"~/Music/Non-Classical/70s-80s/\")'")
 
     --- My Applications (Super+Alt+Key) Key Bindings
-        , ("M-M1-a", spawn (myTerminal ++ " -e ncpamixer"))
+        , ("M-M1-a", spawn (myTerminal ++ " -e pulsemixer"))
         , ("M-M1-b", spawn "surf www.youtube.com/c/DistroTube/")
         , ("M-M1-e", spawn "caja")
         , ("M-M1-c", spawn "google-chrome-stable")
@@ -870,8 +874,8 @@ main :: IO ()
 main = do
     -- Launching three instances of xmobar on their monitors.
     xmproc0 <- spawnPipe "xmobar -x 0 /home/w/.config/xmobar/xmobarrc0"
-    xmproc1 <- spawnPipe "xmobar -x 1 /home/w/.config/xmobar/xmobarrc1"
- --   xmproc2 <- spawnPipe "xmobar -x 2 /home/w/.config/xmobar/xmobarrc2"
+    xmproc1 <- spawnPipe "xmobar -x 1 /home/w/.config/xmobar/xmobarrc2"
+    xmproc2 <- spawnPipe "xmobar -x 2 /home/w/.config/xmobar/xmobarrc1"
     -- the xmonad, ya know...what the WM is named after!
     xmonad $ ewmh def
         { manageHook = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageDocks
@@ -892,7 +896,7 @@ main = do
         , normalBorderColor  = myNormColor
         , focusedBorderColor = myFocusColor
         , logHook = workspaceHistoryHook <+> myLogHook <+> dynamicLogWithPP xmobarPP
-                        { ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x --  >> hPutStrLn xmproc2 x
+                        { ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x >> hPutStrLn xmproc2 x
                         , ppCurrent = xmobarColor "#c3e88d" "" . wrap "[" "]" -- Current workspace in xmobar
                         , ppVisible = xmobarColor "#c3e88d" ""                -- Visible but not current workspace
                         , ppHidden = xmobarColor "#82AAFF" "" . wrap "*" ""   -- Hidden workspaces in xmobar
@@ -903,4 +907,4 @@ main = do
                         , ppExtras  = [windowCount]                           -- # of windows current workspace
                         , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
                         }
-        } `additionalKeysP` myKeys
+           } `additionalKeysP` myKeys
