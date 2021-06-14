@@ -83,7 +83,8 @@ myModMask :: KeyMask
 myModMask = mod4Mask       -- Sets modkey to super/windows key
 
 myTerminal :: String
-myTerminal = "WINIT_X11_SCALE_FACTOR=1 alacritty"   -- Sets default terminal
+--myTerminal = "WINIT_X11_SCALE_FACTOR=1 alacritty"   -- Sets default terminal
+myTerminal = "kitty"
 
 myBrowser :: String
 myBrowser = "epiphany "               -- Sets firefox as browser for tree select
@@ -110,14 +111,14 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 
 myStartupHook :: X ()
 myStartupHook = do
-        --  spawnOnce "nitrogen --restore &"
-          spawnOnce "/home/w/.config/scripts/mon-set1.sh &"
-          spawnOnce "/home/w/.config/scripts/wall-set.sh &"
-          spawnOnce "picom &"
+          spawnOnce "/home/w/.config/scripts/mon_wallset.sh &"
+--          spawnOnce "/home/w/.config/scripts/wall-set.sh"
           spawnOnce "nm-applet &"
           spawnOnce "volumeicon &"
           spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x292d3e --height 22 &"
+--          spawnOnce "picom &"
           spawnOnce "/usr/bin/emacs --daemon &"
+          spawnOnce "lxsession &"
           -- spawnOnce "kak -d -s mysession &"
           setWMName "xmonad"
 
@@ -158,6 +159,7 @@ myAppGrid = [ ("Audacity", "audacity")
                  , ("Google Chrome", "google-chrome-stable")
                  , ("Private Internet Access", "pia-client")
                  , ("Evolution", "evolution")
+                 , ("MailSpring Email", "mailspring")
                  , ("Gimp", "gimp")
                  , ("Kdenlive", "kdenlive")
                  , ("Alacritty", "WINIT_X11_SCALE_FACTOR=1 alacritty")
@@ -205,6 +207,7 @@ treeselectAction a = TS.treeselectAction a
        , Node (TS.TSNode "FileZilla" "An FTP client" (spawn "filezilla")) []
        , Node (TS.TSNode "Firefox" "Open source web browser" (spawn "firefox")) []
        , Node (TS.TSNode "Evolution" "Email client with a nice UI" (spawn "evolution")) []
+       , Node (TS.TSNode "MailSpring Email" "Email client" (spawn "mailspring")) []
        , Node (TS.TSNode "Jitsi" "Open source video chat" (spawn "xxx")) []
        , Node (TS.TSNode "Mu4e" "An Emacs email client" (spawn "xxx")) []
        , Node (TS.TSNode "Nextcloud" "File syncing desktop utility" (spawn "nextcloud")) []
@@ -368,23 +371,23 @@ treeselectAction a = TS.treeselectAction a
            , Node (TS.TSNode "MyVariables.hs" "My XMonad variables" (spawn (myEditor ++ "/home/dt/.xmonad/lib/Custom/MyVariables.hs"))) []
            ]
        , Node (TS.TSNode "WINIT_X11_SCALE_FACTOR=1 alacritty" "alacritty terminal emulator" (spawn (myEditor ++ "/home/dt/.config/alacritty/alacritty.yml"))) []
-       , Node (TS.TSNode "awesome" "awesome window manager" (spawn (myEditor ++ "/home/dt/.config/awesome/rc.lua"))) []
-       , Node (TS.TSNode "bashrc" "the bourne again shell" (spawn (myEditor ++ "/home/dt/.bashrc"))) []
-       , Node (TS.TSNode "bspwmrc" "binary space partitioning window manager" (spawn (myEditor ++ "/home/dt/.config/bspwm/bspwmrc"))) []
-       , Node (TS.TSNode "dmenu config.h" "dynamic menu program" (spawn (myEditor ++ "/home/dt/dmenu-distrotube/config.h"))) []
+       , Node (TS.TSNode "awesome" "awesome window manager" (spawn (myEditor ++ "/home/w/.config/awesome/rc.lua"))) []
+       , Node (TS.TSNode "bashrc" "the bourne again shell" (spawn (myEditor ++ "/home/w/.bashrc"))) []
+       , Node (TS.TSNode "bspwmrc" "binary space partitioning window manager" (spawn (myEditor ++ "/home/w/.config/bspwm/bspwmrc"))) []
+       , Node (TS.TSNode "dmenu config.h" "dynamic menu program" (spawn (myEditor ++ "/home/w/dmenu-distrotube/config.h"))) []
        , Node (TS.TSNode "dunst" "dunst notifications" (spawn (myEditor ++ "/home/dt/.config/dunst/dunstrc"))) []
        , Node (TS.TSNode "dwm config.h" "dynamic window manager" (spawn (myEditor ++ "/home/dt/dwm-distrotube/config.h"))) []
-       , Node (TS.TSNode "herbstluftwm" "herbstluft window manager" (spawn (myEditor ++ "/home/dt/.config/herbstluftwm/autostart"))) []
-       , Node (TS.TSNode "neovim init.vim" "neovim text editor" (spawn (myEditor ++ "/home/dt/.config/nvim/init.vim"))) []
-       , Node (TS.TSNode "polybar" "easy-to-use status bar" (spawn (myEditor ++ "/home/dt/.config/polybar/config"))) []
-       , Node (TS.TSNode "qtile config.py" "qtile window manager" (spawn (myEditor ++ "/home/dt/.config/qtile/config.py"))) []
+       , Node (TS.TSNode "herbstluftwm" "herbstluft window manager" (spawn (myEditor ++ "/home/w/.config/herbstluftwm/autostart"))) []
+       , Node (TS.TSNode "neovim init.vim" "neovim text editor" (spawn (myEditor ++ "/home/w/.config/nvim/init.vim"))) []
+       , Node (TS.TSNode "polybar" "easy-to-use status bar" (spawn (myEditor ++ "/home/w/.config/polybar/config"))) []
+       , Node (TS.TSNode "qtile config.py" "qtile window manager" (spawn (myEditor ++ "/home/w/.config/qtile/config.py"))) []
        , Node (TS.TSNode "qutebrowser config.py" "qutebrowser web browser" (spawn (myEditor ++ "/home/dt/.config/qutebrowser/config.py"))) []
        , Node (TS.TSNode "st config.h" "suckless simple terminal" (spawn (myEditor ++ "home/dt/st-distrotube/config.h"))) []
-       , Node (TS.TSNode "sxhkdrc" "simple X hotkey daemon" (spawn (myEditor ++ "/home/dt/.config/sxhkd/sxhkdrc"))) []
+       , Node (TS.TSNode "sxhkdrc" "simple X hotkey daemon" (spawn (myEditor ++ "/home/w/.config/sxhkd/sxhkdrc"))) []
        , Node (TS.TSNode "surf config.h" "surf web browser" (spawn (myEditor ++ "/home/dt/surf-distrotube/config.h"))) []
        , Node (TS.TSNode "tabbed config.h" "generic tabbed interface" (spawn (myEditor ++ "home/dt/tabbed-distrotube/config.h"))) []
-       , Node (TS.TSNode "xresources" "xresources file" (spawn (myEditor ++ "/home/dt/.Xresources"))) []
-       , Node (TS.TSNode "zshrc" "Config for the z shell" (spawn (myEditor ++ "/home/dt/.zshrc"))) []
+       , Node (TS.TSNode "xresources" "xresources file" (spawn (myEditor ++ "/home/w/.Xresources"))) []
+       , Node (TS.TSNode "zshrc" "Config for the z shell" (spawn (myEditor ++ "/home/w/.zshrc"))) []
        ]
    , Node (TS.TSNode "+ Screenshots" "take a screenshot" (return ()))
        [ Node (TS.TSNode "Quick fullscreen" "take screenshot immediately" (spawn "scrot -d 1 ~/scrot/%Y-%m-%d-@%H-%M-%S-scrot.png")) []
@@ -713,6 +716,7 @@ myManageHook = composeAll
 
 
 --     [ className =? "htop"     --> doShift ( myWorkspaces !! 7 )
+
 --     , title =? "firefox"     --> doShift ( myWorkspaces !! 1 )
 --     , className =? "mpv"     --> doShift ( myWorkspaces !! 7 )
 --     -- , className =? "vlc"     --> doShift ( myWorkspaces !! 7 )
@@ -749,7 +753,10 @@ myKeys =
     -- Show Rofi Window Switcher
         , ("M-M1-<Tab>", spawn "rofi -show window")
 
-    -- Windows
+    -- Lock the screen
+        , ("M-x", spawn "betterlockscreen -l") 
+
+-- Windows
         , ("M-S-c", kill1)                           -- Kill the currently focused client
         , ("M-S-a", killAll)                         -- Kill all windows on current workspace
 
