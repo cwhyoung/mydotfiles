@@ -11,13 +11,13 @@
 
 #### AUTOSTART ####
 killall picom
-$HOME/.config/scripts/mon-set1.sh 
+$HOME/.config/scripts/mon_wallset.sh &
 sxhkd &
 ntfd &
-$HOME/.config/scripts/wall-set.sh &
-picom &
+#$HOME/.config/scripts/wall-set.sh &
+#picom &
 $HOME/.config/polybar/launch.sh
-
+setxkbmap gb
 
 #### MONITORS ####
 bspc monitor DP-2 -d 1 2 3 4 5 6 7 8 9 10
