@@ -12,13 +12,14 @@ hc() {
 }
 
 hc emit_hook reload
-$HOME/.config/scripts/mon-set1.sh
-$HOME/.config/scripts/wall-set.sh
+$HOME/.config/scripts/mon_wallset.sh &
+## $HOME/.config/scripts/wall-set.sh
 xsetroot -solid '#5A8E3A'
 ntfd &
-picom &
 exec --no-startup-id /usr/lib/pam_kwallet_init &
-lxsession &
+#### Set GB Keyboard Layout ####
+#setxkbmap -layout gb &
+# plasmasession &
 
 # Uncomment the following lines to use xmobar as the panel
 # Remember to comment out the last 8 lines of this config, so that
@@ -30,12 +31,13 @@ hc keyunbind --all
 
 # keybindings
 Mod=Mod4                            # Use the super key as the main modifier
-myTerm=terminator                    # Set my preferred terminal
-myEditor=gedit  # Set my preferred editor
+#myTerm=WINIT_X11_SCALE_FACTOR=1 alacritty                    # Set my preferred terminal
+myTerm=alacritty #Set my default terminal emulator
+myEditor=vim  # Set my preferred editor
 
 hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Shift-r reload
-hc keybind $Mod-w close
+hc keybind $Mod-Shift-c close
 hc keybind $Mod-Return spawn $myTerm
 hc keybind Mod1-Control-Return spawn  $HOME/.config/xmenu/xmenu.sh
 
@@ -248,3 +250,4 @@ for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
     # start it on each monitor
     "$panel" $monitor &
 done
+killall alacritty
