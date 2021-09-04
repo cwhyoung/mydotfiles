@@ -9,4 +9,15 @@ case $BLOCK_BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-sensors | awk '/Core 0/ {print "^c#f23a56^","🌡" $3"^d^"}'
+var="$(sensors | awk '/Package/ {print $4}')"
+var1=${var:1:2}
+
+case "$var1" in
+	([0-3][0-5]) printf "^c#71e3f0^ $var^d^";; 
+	([3][5-9]) printf "^c#5076eb^ $var^d^";;
+	([4-6][0-9]) printf "^c#7723cc^ $var^d^";;
+	([7][0-9]) printf "^c#c41097^ $var^d^";;
+	([8][0-4]) printf "^c#c41064^ $var^d^";;
+	([8][5-9]) printf "^c#c41043^ $var^d^";; 
+	([9][0-9]) printf "^c#f50010^ $var^d^";;
+esac

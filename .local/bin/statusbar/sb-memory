@@ -9,5 +9,6 @@ case $BLOCK_BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
+var1="$(free | grep Mem | awk '{ printf("%.0f%\n", $3/$2 * 100.0) }')"
 
-free --mebi | sed -n '2{p;q}' | awk '{printf ("^c#ffffff^🧠%2.2fGiB/%2.2fGiB\n", ( $3 / 1024), ($2 / 1024))}'
+printf "🧠 $var1%"

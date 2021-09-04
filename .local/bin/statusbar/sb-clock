@@ -1,6 +1,6 @@
 #!/bin/sh
 
-clock=$("^d^", date '+%I')
+clock=$(date '+%I')
 
 case "$clock" in
 	"00") icon="🕛" ;;
@@ -26,4 +26,5 @@ case $BLOCK_BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-date "+%b %d (%a) $icon%I:%M%p"
+tim=$(date "+%A %d %b $icon %R")
+printf "^c#7184d9^ $tim"

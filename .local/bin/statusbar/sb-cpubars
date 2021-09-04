@@ -16,7 +16,7 @@ one CPU core";;
 esac
 
 # id total idle
-stats=$(awk '/cpu[0-15]+/ {printf "%d %d %d\n", substr($1,4), ($2 + $3 + $4 + $5), $5 }' /proc/stat)
+stats=$(awk '/cpu[0-11]+/ {printf "%d %d %d\n", substr($1,4), ($2 + $3 + $4 + $5), $5 }' /proc/stat)
 [ ! -f $cache ] && echo "$stats" > "$cache"
 old=$(cat "$cache")
 printf "🪨"

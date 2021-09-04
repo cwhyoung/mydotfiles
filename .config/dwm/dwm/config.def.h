@@ -8,8 +8,8 @@ static int topbar             = 1;        /* 0 means bottom bar */
 
 
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
-static const char *fonts[]          = { "monospace:size=13" };
-static const char dmenufont[]       = "monospace:size=13";
+static const char *fonts[]          = { "Hack:size=11", "JoyPixels:pixelsize=13:antialias=true:autohint=true", "Inconsolata Nerd Font:size=12" };
+static const char dmenufont[]       = "monospace:size=11";
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char purplebgcolor[]         = "#292045";
@@ -53,7 +53,7 @@ static const Rule rules[] = {
 	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
 	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
 	{ "Qalculate-gtk",      NULL,     NULL,           0,         1,          1,           0,        -1 },
-	{ "mpv",      NULL,     NULL,           0,         1,          1,           0,        -1 }, 
+	{ "mpv",      NULL,     NULL,           0,         1,          1,           0,        -1 },
 	{ "SimpleScreenRecorder",      NULL,     NULL,           0,         1,          1,           0,        -1 },
 	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
@@ -103,7 +103,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "kitty", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
-static const char *rofi[] = { "/home/w/.config/dwm/rofi-run-progs.sh", NULL };
+static const char *rofi[] = { "/home/w/.dwm/rofi-run-progs.sh", NULL };
 static const char *google[] = { "google-chrome-stable", NULL };
 static const char *brave[] = { "brave", NULL };
 static const char *mailspring[] = { "mailspring", NULL };
