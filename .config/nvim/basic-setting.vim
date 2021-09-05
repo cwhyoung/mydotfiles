@@ -11,6 +11,9 @@ set softtabstop=4
 set tabstop=4
 set number relativenumber
 set termguicolors
+set noswapfile
+set nobackup
+
 
 "Fix Splitting
 set splitbelow splitright
