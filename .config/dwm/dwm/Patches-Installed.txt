@@ -1,0 +1,22 @@
+Autostart Patch
+RestartSig
+Pertag
+Cycle Layouts
+No Border
+RotateStack
+Actual Fullscreen
+Fake Full Screen
+Columns
+Grid Layout
+Fibonacci - Dwindle
+Swallow
+Deck
+Centered Master
+Centre Floating Master
+StatusCMD with Status 2D
+Status 2D
+Scratchpad
+Centre floating window
+Show statusbar on all monitors
+DWMBLOCKS integration through statuscmd
+
