@@ -19,4 +19,6 @@ Scratchpad
 Centre floating window
 Show statusbar on all monitors
 DWMBLOCKS integration through statuscmd
-
+Xresources Patch
+Attach Bottom
+ColorBar

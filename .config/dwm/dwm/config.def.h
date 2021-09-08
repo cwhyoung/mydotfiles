@@ -49,14 +49,15 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
-	{ "Qalculate-gtk",      NULL,     NULL,           0,         1,          1,           0,        -1 },
-	{ "mpv",      NULL,     NULL,           0,         1,          1,           0,        -1 },
-	{ "SimpleScreenRecorder",      NULL,     NULL,           0,         1,          1,           0,        -1 },
-	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+	/* class                  instance  title             tags mask  isfloating  isterminal  noswallow  monitor */
+	{ "Gimp",                 NULL,     NULL,              0,         1,          0,           0,        -1 },
+	{ "Firefox",              NULL,     NULL,              1 << 8,    0,          0,          -1,        -1 },
+	{ "Qalculate-gtk",        NULL,     NULL,              0,         1,          1,           0,        -1 },
+	{ "mpv",                  NULL,     NULL,              0,         1,          1,           0,        -1 },
+    { "kitty",                NULL,     NULL,              0,         0,          1,           0,        -1 },
+	{ "SimpleScreenRecorder", NULL,     NULL,              0,         1,          1,           0,        -1 },
+	{ "St",                   NULL,     NULL,              0,         0,          1,           0,        -1 },
+	{ NULL,                   NULL,     "Event Tester",    0,         0,          0,           1,        -1 }, /* xev */
 };
 
 #include <X11/XF86keysym.h>
@@ -120,7 +121,7 @@ ResourcePref resources[] = {
 		{ "normfgcolor",        STRING,  &normfgcolor },
 		{ "selbgcolor",         STRING,  &selbgcolor },
 		{ "orangecolor",        STRING,  &orangecolor },
-		{ "deepbluecolor",	STRING,  &deepbluecolor }, 
+		{ "deepbluecolor",	STRING,  &deepbluecolor },
 		{ "selbordercolor",     STRING,  &selbordercolor },
 		{ "selfgcolor",         STRING,  &selfgcolor },
 		{ "infofgcolor",        STRING,  &infofgcolor },
@@ -183,7 +184,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {1} }, 
+	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {1} },
 
  	/* Spawn programmes section with Super + Alt + key */
 	{ MODKEY|Mod1Mask,              XK_d,      spawn,          {.v = rofi } },

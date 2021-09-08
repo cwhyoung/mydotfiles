@@ -297,7 +297,7 @@ static int sw, sh;           /* X display screen geometry width, height */
 static int bh, blw = 0;      /* bar geometry */
 static int lrpad;            /* sum of left and right padding for text */
 static int (*xerrorxlib)(Display *, XErrorEvent *);
-static unsigned int numlockmask = 0;
+static unsigned int numlockmask = 1;
 static void (*handler[LASTEvent]) (XEvent *) = {
 	[ButtonPress] = buttonpress,
 	[ClientMessage] = clientmessage,
@@ -569,8 +569,8 @@ buttonpress(XEvent *e)
 		else if (ev->x > selmon->ww - statusw) {
 			x = selmon->ww - statusw;
 			click = ClkStatusText;
-		
-	
+
+
 			char *text, *s, ch;
 			statussig = 0;
 			for (text = s = stext; *s && x <= ev->x; s++) {
@@ -595,8 +595,8 @@ buttonpress(XEvent *e)
 				}
 			}
 		} else
-		
-			
+
+
 			click = ClkWinTitle;
 	} else if ((c = wintoclient(ev->window))) {
 		focus(c);
@@ -1003,7 +1003,7 @@ drawbar(Monitor *m)
 	/* draw status first so it can be overdrawn by tags later */
 /*	if (m == selmon) {  status is only drawn on selected monitor  */
 	if (m == selmon || 1) { /* status is only drawn on selected monitor */
-	        sw = statusw = m->ww - drawstatusbar(m, bh, stext);	
+	        sw = statusw = m->ww - drawstatusbar(m, bh, stext);
 	}
 
 	for (c = m->clients; c; c = c->next) {
@@ -2922,3 +2922,4 @@ main(int argc, char *argv[])
 	XCloseDisplay(dpy);
 	return EXIT_SUCCESS;
 }
+
