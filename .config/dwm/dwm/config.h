@@ -9,7 +9,7 @@ static int topbar             = 1;        /* 0 means bottom bar */
 
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const char *fonts[]          = { "Hack:size=11", "JoyPixels:pixelsize=13:antialias=true:autohint=true", "Inconsolata Nerd Font:size=12" };
-static const char dmenufont[]       = "monospace:size=11";
+static const char dmenufont[]       = "Hack:size=11";
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char purplebgcolor[]         = "#292045";
@@ -54,7 +54,9 @@ static const Rule rules[] = {
 	{ "Firefox",              NULL,     NULL,              1 << 8,    0,          0,          -1,        -1 },
 	{ "Qalculate-gtk",        NULL,     NULL,              0,         1,          1,           0,        -1 },
 	{ "mpv",                  NULL,     NULL,              0,         1,          1,           0,        -1 },
+    { "Pavucontrol",          NULL,     NULL,              0,         1,          0,           0,        -1 },
     { "kitty",                NULL,     NULL,              0,         0,          1,           0,        -1 },
+    { "Steam",                NULL,   "Steam",              0,         1,          0,           0,        -1 },
 	{ "SimpleScreenRecorder", NULL,     NULL,              0,         1,          1,           0,        -1 },
 	{ "St",                   NULL,     NULL,              0,         0,          1,           0,        -1 },
 	{ NULL,                   NULL,     "Event Tester",    0,         0,          0,           1,        -1 }, /* xev */
@@ -78,7 +80,7 @@ static const Layout layouts[] = {
 	{ "|||",      col },   /* Columns layout */
 	{ "[@]",      spiral },
 	{ "[\\]",     dwindle },
-	{ "|cM|",      centeredmaster },
+	{ "|cM|",     centeredmaster },
 	{ ">M>",      centeredfloatingmaster },
 	{ "[D]",      deck },
 	{ NULL,       NULL },
@@ -209,7 +211,7 @@ static Key keys[] = {
 static Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
-	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
+	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[9]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button1,        sigstatusbar,   {.i = 1} },
 	{ ClkStatusText,        0,              Button2,        sigstatusbar,   {.i = 2} },
