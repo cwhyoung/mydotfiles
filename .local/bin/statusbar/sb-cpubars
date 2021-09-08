@@ -16,7 +16,7 @@ one CPU core";;
 esac
 
 # id total idle
-stats=$(awk '/cpu[0-11]+/ {printf "%d %d %d\n", substr($1,4), ($2 + $3 + $4 + $5), $5 }' /proc/stat)
+stats=$(awk '/cpu[0-5]+/ {printf "%d %d %d\n", substr($1,4), ($2 + $3 + $4 + $5), $5 }' /proc/stat)
 [ ! -f $cache ] && echo "$stats" > "$cache"
 old=$(cat "$cache")
 printf "🪨"
@@ -42,3 +42,13 @@ echo "$stats" | while read -r row; do
 	esac
 done; printf "\\n"
 echo "$stats" > "$cache"
+
+#		"0") printf "^c#57ffdb^▁^d^";;
+#		"1") printf "^c#57ffb9^▂^d^";;
+#		"2") printf "^c#57ff78^▃^d^";;
+#		"3") printf "^c#5cff57^▄^d^";;
+#		"4") printf "^c#78ff57^▅^d^";;
+#		"5") printf "^c#b9ff57^▆^d^";;
+#		"6") printf "▇";;
+#		"7") printf "█";;
+#		"8") printf "█";;
