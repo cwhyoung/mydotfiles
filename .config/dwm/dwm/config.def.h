@@ -8,17 +8,17 @@ static int topbar             = 1;        /* 0 means bottom bar */
 
 
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
-static const char *fonts[]          = { "Hack:size=11", "JoyPixels:pixelsize=13:antialias=true:autohint=true", "Inconsolata Nerd Font:size=12" };
-static const char dmenufont[]       = "Hack:size=11";
-static char normbgcolor[]           = "#222222";
+static const char *fonts[]          = { "Hack:size=12", "JoyPixels:pixelsize=13:antialias=true:autohint=true", "Inconsolata Nerd Font:size=12" };
+static const char dmenufont[]       = "Hack:size=12";
+static char tagnormbgcolor[]        = "#222222";
+static char tagnormfgcolor[]        = "#fcfaff";
+static char tagselfgcolor[]            = "#eeeeee";
+static char tagselbgcolor[]            = "#005577";
 static char normbordercolor[]       = "#444444";
 static char purplebgcolor[]         = "#292045";
 static char deepbluecolor[]         = "#1F1D3A";
 static char orangecolor[]           = "#E3442A";
-static char normfgcolor[]           = "#bbbbbb";
-static char selfgcolor[]            = "#eeeeee";
 static char selbordercolor[]        = "#005577";
-static char selbgcolor[]            = "#005577";
 static char infofgcolor[]           = "#A6CAD9";
 static char infobgcolor[]           = "#1F2635";
 static const char col_black[]       = "#000000";
@@ -31,12 +31,12 @@ static const char col_cyan[]        = "#005577";
 
 static char *colors[][3] = {
        /*               fg           bg           border   */
-       [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
-       [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
+       [SchemeNorm] = { tagnormfgcolor, tagnormbgcolor, normbordercolor },
+       [SchemeSel]  = { tagselfgcolor,  tagselbgcolor,  selbordercolor  },
 
 	[SchemeStatus]  = { "#ffff00", purplebgcolor,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
-	[SchemeTagsSel]  = { selfgcolor, orangecolor,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
-        [SchemeTagsNorm]  = { selfgcolor, purplebgcolor,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
+	[SchemeTagsSel]  = { tagselfgcolor, tagselbgcolor,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
+        [SchemeTagsNorm]  = { tagnormfgcolor, tagnormbgcolor,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
         [SchemeInfoSel]  = { infofgcolor, infobgcolor,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
         [SchemeInfoNorm]  = { infofgcolor, deepbluecolor,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
@@ -56,7 +56,7 @@ static const Rule rules[] = {
 	{ "mpv",                  NULL,     NULL,              0,         1,          1,           0,        -1 },
     { "Pavucontrol",          NULL,     NULL,              0,         1,          0,           0,        -1 },
     { "kitty",                NULL,     NULL,              0,         0,          1,           0,        -1 },
-    { "Steam",                NULL,   "Steam",              0,         1,          0,           0,        -1 },
+    { "Steam",                NULL,     NULL,              0,         1,          0,           0,        -1 },
 	{ "SimpleScreenRecorder", NULL,     NULL,              0,         1,          1,           0,        -1 },
 	{ "St",                   NULL,     NULL,              0,         0,          1,           0,        -1 },
 	{ NULL,                   NULL,     "Event Tester",    0,         0,          0,           1,        -1 }, /* xev */
@@ -102,30 +102,24 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", tagnormbgcolor, "-nf", tagnormfgcolor, "-sb", selbordercolor, "-sf", tagselfgcolor, NULL };
 static const char *termcmd[]  = { "kitty", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
-static const char *rofi[] = { "/home/w/.dwm/rofi-run-progs.sh", NULL };
-static const char *google[] = { "google-chrome-stable", NULL };
-static const char *brave[] = { "brave", NULL };
-static const char *mailspring[] = { "mailspring", NULL };
-static const char *xmenu[] = { "/home/w/.config/xmenu/xmenu.sh", NULL };
-static const char *caja[] = { "caja", NULL };
 
 /*
  * Xresources preferences to load at startup
  */
 ResourcePref resources[] = {
-		{ "normbgcolor",        STRING,  &normbgcolor },
+		{ "tagnormbgcolor",     STRING,  &tagnormbgcolor },
+        { "tagnormfgcolor",     STRING,  &tagnormfgcolor },
 		{ "normbordercolor",    STRING,  &normbordercolor },
+        { "tagselfgcolor",      STRING,  &tagselfgcolor   },
+        { "tagselbgcolor",      STRING,  &tagselbgcolor   },
 		{ "purplebgcolor",      STRING,  &purplebgcolor  },
-		{ "normfgcolor",        STRING,  &normfgcolor },
-		{ "selbgcolor",         STRING,  &selbgcolor },
 		{ "orangecolor",        STRING,  &orangecolor },
 		{ "deepbluecolor",	STRING,  &deepbluecolor },
 		{ "selbordercolor",     STRING,  &selbordercolor },
-		{ "selfgcolor",         STRING,  &selfgcolor },
 		{ "infofgcolor",        STRING,  &infofgcolor },
 		{ "infobgcolor",        STRING,  &infobgcolor },
 		{ "borderpx",          	INTEGER, &borderpx },
@@ -141,7 +135,7 @@ ResourcePref resources[] = {
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_j,      rotatestack,    {.i = +1 } },
@@ -152,7 +146,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_Return, zoom,           {0} },
+	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
@@ -165,7 +159,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[7]} },
 	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[8]} },
 	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[9]} },
-	{ MODKEY|ControlMask,		XK_comma,  cyclelayout,    {.i = -1 } },
+	{ MODKEY|ControlMask,		    XK_comma,  cyclelayout,    {.i = -1 } },
 	{ MODKEY|ControlMask,           XK_period, cyclelayout,    {.i = +1 } },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
@@ -189,20 +183,20 @@ static Key keys[] = {
 	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {1} },
 
  	/* Spawn programmes section with Super + Alt + key */
-	{ MODKEY|Mod1Mask,              XK_d,      spawn,          {.v = rofi } },
-	{ MODKEY|Mod1Mask,              XK_c,      spawn,          {.v = google } },
-	{ MODKEY|Mod1Mask,              XK_x,      spawn,          {.v = xmenu } },
-	{ MODKEY|Mod1Mask,              XK_m,      spawn,          {.v = mailspring} },
-	{ MODKEY|Mod1Mask,              XK_b,      spawn,          {.v = brave } },
-	{ MODKEY|Mod1Mask,              XK_f,      spawn,          {.v = caja } },
+	{ MODKEY|Mod1Mask,              XK_d,      spawn,          SHCMD("rofi -show drun -show-icons") },
+	{ MODKEY|Mod1Mask,              XK_c,      spawn,          SHCMD("google-chrome-stable") },
+	{ MODKEY|Mod1Mask,              XK_x,      spawn,          SHCMD("~/.config/xmenu/xmenu.sh") },
+	{ MODKEY|Mod1Mask,              XK_m,      spawn,          SHCMD("mailspring") },
+	{ MODKEY|Mod1Mask,              XK_b,      spawn,          SHCMD("brave") },
+	{ MODKEY|Mod1Mask,              XK_f,      spawn,          SHCMD("caja") },
 
-	{ 0, XF86XK_AudioMute,		spawn,		SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)") },
+	{ 0, XF86XK_AudioMute,		    spawn,		SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)") },
 	{ 0, XF86XK_AudioRaiseVolume,	spawn,		SHCMD("pamixer --allow-boost -i 3; kill -44 $(pidof dwmblocks)") },
 	{ 0, XF86XK_AudioLowerVolume,	spawn,		SHCMD("pamixer --allow-boost -d 3; kill -44 $(pidof dwmblocks)") },
-	{ 0, XF86XK_AudioPrev,		spawn,		SHCMD("mpc prev") },
-	{ 0, XF86XK_AudioNext,		spawn,		SHCMD("mpc next") },
-	{ 0, XF86XK_AudioPlay,		spawn,		SHCMD("playerctl play-pause") },
-	{ 0, XF86XK_Calculator,		spawn,		SHCMD("qalculate-gtk") },
+	{ 0, XF86XK_AudioPrev,		    spawn,		SHCMD("mpc prev") },
+	{ 0, XF86XK_AudioNext,		    spawn,		SHCMD("mpc next") },
+	{ 0, XF86XK_AudioPlay,		    spawn,		SHCMD("playerctl play-pause") },
+	{ 0, XF86XK_Calculator,		    spawn,		SHCMD("qalculate-gtk") },
 
 };
 
