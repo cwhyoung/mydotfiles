@@ -184,6 +184,7 @@ static Key keys[] = {
 
  	/* Spawn programmes section with Super + Alt + key */
 	{ MODKEY|Mod1Mask,              XK_d,      spawn,          SHCMD("rofi -show drun -show-icons") },
+    { Mod4Mask,                     XK_Tab,    spawn,          SHCMD("rofi -show") },
 	{ MODKEY|Mod1Mask,              XK_c,      spawn,          SHCMD("google-chrome-stable") },
 	{ MODKEY|Mod1Mask,              XK_x,      spawn,          SHCMD("~/.config/xmenu/xmenu.sh") },
 	{ MODKEY|Mod1Mask,              XK_m,      spawn,          SHCMD("mailspring") },
