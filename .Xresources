@@ -1,8 +1,11 @@
 #define S_base03 #002b36
 
-dwm.normbgcolor: #153979
-dwm.normfgcolor: #839496
-dwm.puplebgcolor: #292045
+dwm.tagnormbgcolor: #9e0303 /* #153979 */
+dwm.tagnormfgcolor: #faffff /* #839496 */
+dwm.tagselbgcolor: #f25c5c
+dwm.tagselfgcolor: #faffff
+dwm.statfgcolor: #ffff00
+dwm.statbgcolor: #292045
 dwm.orangecolor: #E3442A
 dwm.deepbluecolor: #1F1D3A
 dwm.normbordercolor: #4C4D4D  /* #839496 */
@@ -11,6 +14,7 @@ dwm.selfgcolor: #839496
 dwm.selbordercolor: #FE993F  /* #b58900 */
 dwm.infofgcolor: #A6CAD9
 dwm.infobgcolor: #1F2635
+
 dwm.mfact:	0.5
 dwm.nmaster:	1
 

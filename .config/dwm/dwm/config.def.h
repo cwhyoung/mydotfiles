@@ -12,12 +12,12 @@ static const char *fonts[]          = { "Hack:size=12", "JoyPixels:pixelsize=13:
 static const char dmenufont[]       = "Hack:size=12";
 static char tagnormbgcolor[]        = "#222222";
 static char tagnormfgcolor[]        = "#fcfaff";
-static char tagselfgcolor[]            = "#eeeeee";
-static char tagselbgcolor[]            = "#005577";
+static char tagselfgcolor[]         = "#eeeeee";
+static char tagselbgcolor[]         = "#005577";
 static char normbordercolor[]       = "#444444";
-static char purplebgcolor[]         = "#292045";
+static char statfgcolor[]           = "#ffff00";
+static char statbgcolor[]           = "#292045";
 static char deepbluecolor[]         = "#1F1D3A";
-static char orangecolor[]           = "#E3442A";
 static char selbordercolor[]        = "#005577";
 static char infofgcolor[]           = "#A6CAD9";
 static char infobgcolor[]           = "#1F2635";
@@ -34,7 +34,7 @@ static char *colors[][3] = {
        [SchemeNorm] = { tagnormfgcolor, tagnormbgcolor, normbordercolor },
        [SchemeSel]  = { tagselfgcolor,  tagselbgcolor,  selbordercolor  },
 
-	[SchemeStatus]  = { "#ffff00", purplebgcolor,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
+	[SchemeStatus]  = { statfgcolor, statbgcolor,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
 	[SchemeTagsSel]  = { tagselfgcolor, tagselbgcolor,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
         [SchemeTagsNorm]  = { tagnormfgcolor, tagnormbgcolor,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
         [SchemeInfoSel]  = { infofgcolor, infobgcolor,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
@@ -116,8 +116,8 @@ ResourcePref resources[] = {
 		{ "normbordercolor",    STRING,  &normbordercolor },
         { "tagselfgcolor",      STRING,  &tagselfgcolor   },
         { "tagselbgcolor",      STRING,  &tagselbgcolor   },
-		{ "purplebgcolor",      STRING,  &purplebgcolor  },
-		{ "orangecolor",        STRING,  &orangecolor },
+		{ "statfgcolor",        STRING,  &statfgcolor  },
+		{ "statbgcolor",        STRING,  &statbgcolor },
 		{ "deepbluecolor",	STRING,  &deepbluecolor },
 		{ "selbordercolor",     STRING,  &selbordercolor },
 		{ "infofgcolor",        STRING,  &infofgcolor },
