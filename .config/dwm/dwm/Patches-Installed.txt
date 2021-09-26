@@ -23,3 +23,4 @@ Xresources Patch
 Attach Bottom
 ColorBar
 SystemTray
+BarHeight
