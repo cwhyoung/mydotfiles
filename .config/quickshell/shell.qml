@@ -6,7 +6,7 @@ import QtQuick
 import Quickshell.Services.UPower
 import Quickshell.Services.Pipewire
 import QtQuick.Layouts
-
+import QtQuick.Controls
 
 
 ShellRoot {
@@ -362,6 +362,12 @@ Rectangle {
                         font.family: root.fontFamily
                         font.bold: true
 
+                        MouseArea {
+                            anchors.fill: parent
+                            cursorShape: Qt.PointingHandCursor
+                acceptedButtons: Qt.LeftButton
+              //  onClicked: cmd.Start("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+")
+
                         WheelHandler {
                             target: null
 
@@ -376,7 +382,7 @@ Rectangle {
                                 audio.volume = Math.max(0, Math.min(1, sink.audio.volume + step))
                                 audio.muted = false
                                 event.accepted = true
-                            }
+                            } }
                         }
                         Layout.rightMargin: 1
 
