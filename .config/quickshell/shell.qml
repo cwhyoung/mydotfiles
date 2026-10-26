@@ -191,7 +191,7 @@ PanelWindow {
     }
 
     color: root.colBg
-    implicitHeight: 38
+    implicitHeight: root.prefSepHeight
 
     RowLayout {
         anchors.left: parent.left
