@@ -196,8 +196,8 @@ PanelWindow {
     RowLayout {
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
-        anchors.leftMargin: 14
-        spacing: 8
+        anchors.leftMargin: 8
+        spacing: 4
 
 
 
@@ -249,8 +249,8 @@ Rectangle {
                         Layout.preferredWidth: 1
                         Layout.preferredHeight: root.prefSepHeight
                         Layout.alignment: Qt.AlignVCenter
-                        Layout.leftMargin: 2
-                        Layout.rightMargin: 8
+                        Layout.leftMargin: 1
+                        Layout.rightMargin: 2
                         color: root.colMuted
                     }
 
@@ -261,15 +261,15 @@ Rectangle {
                         font.pixelSize: root.fontSize
                         font.family: root.fontFamily
                         font.bold: true
-                        Layout.leftMargin: 5
-                        Layout.rightMargin: 5
+                        Layout.leftMargin: 2
+                        Layout.rightMargin: 2
                     }
 Rectangle {
                         Layout.preferredWidth: 1
                         Layout.preferredHeight: root.prefSepHeight
                         Layout.alignment: Qt.AlignVCenter
                         Layout.leftMargin: 2
-                        Layout.rightMargin: 8
+                        Layout.rightMargin: 2
                         color: root.colMuted
                     }
 
@@ -282,7 +282,7 @@ Text {
                         font.family: root.fontFamily
                         font.bold: true
                         Layout.fillWidth: true
-                        Layout.leftMargin: 8
+                        Layout.leftMargin: 3
                         elide: Text.ElideRight
                         maximumLineCount: 1
                     }
