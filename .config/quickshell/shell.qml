@@ -520,7 +520,7 @@ Rectangle {
 
     Text {
                         visible: UPower.displayDevice.percentage > 0
-                        text: "Bat " + UPower.displayDevice.percentage * 100 + "%"
+                        text: "  " + UPower.displayDevice.percentage * 100 + "%"
                         color: root.colPurple
                         font.pixelSize: root.fontSize
                         font.family: root.fontFamily
@@ -541,7 +541,7 @@ Rectangle {
 
 
 Text {
-                        text: " Mem: " + memUsage + "%"
+                        text: "  " + memUsage + "%"
                         color: root.colCyan
                         font.pixelSize: root.fontSize
                         font.family: root.fontFamily
@@ -560,7 +560,7 @@ Rectangle {
 
 
 Text {
-                        text: "Disk: " + diskUsage + "%"
+                        text: "  " + diskUsage + "%"
                         color: root.colBlue
                         font.pixelSize: root.fontSize
                         font.family: root.fontFamily
@@ -578,7 +578,7 @@ Rectangle {
 
 
 Text {
-                        text: "CPU: " + cpuUsage + "%"
+                        text: " " + cpuUsage + "%"
                         color: root.colYellow
                         font.pixelSize: root.fontSize
                         font.family: root.fontFamily
