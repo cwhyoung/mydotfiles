@@ -353,8 +353,23 @@ Rectangle {
                         color: root.colMuted
                     }
 
+ Image {
+            Layout.alignment: Qt.AlignVCenter
+            source: volume.percent <= 0
+                ? "../shared/volume-muted.svg"
+                : "../shared/volume.svg"
+            sourceSize.width: 18
+            sourceSize.height: 18
+            width: 18
+            height: 18
+            fillMode: Image.PreserveAspectFit
+layer.enabled: true
 
-    // vol, bat, net
+
+
+
+        }
+    // volume
                         Text {
         text: "Vol " + Math.round((Pipewire.defaultAudioSink?.audio?.volume ?? 0) * 100) + "%"
                         color: root.colPurple
@@ -366,27 +381,20 @@ Rectangle {
                             anchors.fill: parent
                             cursorShape: Qt.PointingHandCursor
                 acceptedButtons: Qt.LeftButton
-              //  onClicked: cmd.Start("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+")
-
-                        WheelHandler {
-                            target: null
-
-                            onWheel: (event) => {
-                                const delta = event.angleDelta.y || event.pixelDelta.y
-                                if (delta === 0) return
-
-                                var sink = Pipewire.defaultAudioSink
-                                if (!sink || !sink.audio) return
-
-                                var step = delta > 0 ? 0.05 : -0.05
-                                audio.volume = Math.max(0, Math.min(1, sink.audio.volume + step))
-                                audio.muted = false
-                                event.accepted = true
-                            } }
-                        }
+                  onClicked: mouse => {
+                if (mouse.button === Qt.RightButton)
+                     volume.toggleMute()
+            else
+                   volume.activate()
+                    }
+                            onWheel: wheel => volume.step(wheel.angleDelta.y > 0 ? 1 : -1)                                                   }
                         Layout.rightMargin: 1
 
     }    PwObjectTracker { objects: [Pipewire.defaultAudioSink] }
+
+
+
+
 
 Rectangle {
                         Layout.preferredWidth: 1
