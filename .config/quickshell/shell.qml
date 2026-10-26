@@ -361,7 +361,25 @@ Rectangle {
                         font.pixelSize: root.fontSize
                         font.family: root.fontFamily
                         font.bold: true
+
+                        WheelHandler {
+                            target: null
+
+                            onWheel: (event) => {
+                                const delta = event.angleDelta.y || event.pixelDelta.y
+                                if (delta === 0) return
+
+                                var sink = Pipewire.defaultAudioSink
+                                if (!sink || !sink.audio) return
+
+                                var step = delta > 0 ? 0.05 : -0.05
+                                audio.volume = Math.max(0, Math.min(1, sink.audio.volume + step))
+                                audio.muted = false
+                                event.accepted = true
+                            }
+                        }
                         Layout.rightMargin: 1
+
     }    PwObjectTracker { objects: [Pipewire.defaultAudioSink] }
 
 Rectangle {
@@ -374,6 +392,7 @@ Rectangle {
                     }
 
     Text {
+                        visible: UPower.displayDevice.percentage > 0
                         text: "Bat " + UPower.displayDevice.percentage * 100 + "%"
                         color: root.colPurple
                         font.pixelSize: root.fontSize
@@ -384,6 +403,7 @@ Rectangle {
 
 
 Rectangle {
+                        visible: UPower.displayDevice.percentage > 0
                         Layout.preferredWidth: 1
                         Layout.preferredHeight: root.prefSepHeight
                         Layout.alignment: Qt.AlignVCenter
