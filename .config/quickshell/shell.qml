@@ -7,6 +7,8 @@ import Quickshell.Services.UPower
 import Quickshell.Services.Pipewire
 import QtQuick.Layouts
 
+
+
 ShellRoot {
     id: root
 
@@ -32,12 +34,15 @@ ShellRoot {
     property int volumeLevel: 0
     property string activeWindow: "Window"
     property string currentLayout: "Tile"
+    property int prefSepHeight: 38
 
     // CPU tracking
     property var lastCpuIdle: 0
     property var lastCpuTotal: 0
 
-    // Kernel version
+
+
+// Kernel version
     Process {
         id: kernelProc
         command: ["uname", "-r"]
@@ -49,7 +54,8 @@ ShellRoot {
         Component.onCompleted: running = true
     }
 
-    // CPU usage
+
+ // CPU usage
     Process {
         id: cpuProc
         command: ["sh", "-c", "head -1 /proc/stat"]
@@ -82,7 +88,7 @@ ShellRoot {
         Component.onCompleted: running = true
     }
 
-    // Memory usage
+ // Memory usage
     Process {
         id: memProc
         command: ["sh", "-c", "free | grep Mem"]
@@ -112,24 +118,7 @@ ShellRoot {
         }
         Component.onCompleted: running = true
     }
-
-    // Volume level (wpctl for PipeWire)
-    Process {
-        id: volProc
-        command: ["wpctl", "get-volume", "@DEFAULT_AUDIO_SINK@"]
-        stdout: SplitParser {
-            onRead: data => {
-                if (!data) return
-                var match = data.match(/Volume:\s*([\d.]+)/)
-                if (match) {
-                    volumeLevel = Math.round(parseFloat(match[1]) * 100)
-                }
-            }
-        }
-        Component.onCompleted: running = true
-    }
-
-    // Active window title
+// Active window title
     Process {
         id: windowProc
         command: ["sh", "-c", "hyprctl activewindow -j | jq -r '.title // empty'"]
@@ -143,7 +132,7 @@ ShellRoot {
         Component.onCompleted: running = true
     }
 
-    // Current layout (Hyprland: dwindle/master/floating)
+// Current layout (Hyprland: dwindle/master/floating)
     Process {
         id: layoutProc
         command: ["sh", "-c", "hyprctl activewindow -j | jq -r 'if .floating then \"Floating\" elif .fullscreen == 1 then \"Fullscreen\" else \"Tiled\" end'"]
@@ -157,6 +146,8 @@ ShellRoot {
         Component.onCompleted: running = true
     }
 
+
+
     // Slow timer for system stats
     Timer {
         interval: 2000
@@ -166,7 +157,6 @@ ShellRoot {
             cpuProc.running = true
             memProc.running = true
             diskProc.running = true
-            volProc.running = true
         }
     }
 
@@ -193,70 +183,25 @@ ShellRoot {
 
 
 
-    Variants {
-        model: Quickshell.screens
-
-        PanelWindow {
-            property var modelData
-            screen: modelData
-
-            anchors {
-                top: true
-                left: true
-                right: true
-            }
-
-
-
-            implicitHeight: 38
-            color: root.colBg
-
-            margins {
-                top: 0
-                bottom: 0
-                left: 0
-                right: 0
-            }
-
-
-
-
- RowLayout {
-        anchors.centerIn: parent
-        spacing: 8
-    Text {
-        text: Qt.formatDateTime(clock.date, "hh:mm")
-        color: root.colCyan //"#94e2d5"
-        }
-        // clock goes here
+PanelWindow {
+    anchors {
+        top: true
+        left: true
+        right: true
     }
 
+    color: root.colBg
+    implicitHeight: 38
 
-SystemClock {
-id: clock
-precision: SystemClock.Minutes
-}
-
-
-
-
-
+    RowLayout {
+        anchors.left: parent.left
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.leftMargin: 14
+        spacing: 8
 
 
 
-
-
-            Rectangle {
-                anchors.fill: parent
-                color: root.colBg
-
-                RowLayout {
-                    anchors.fill: parent
-                    spacing: 0
-
-                    Item { width: 8 }
-
-                    Rectangle {
+Rectangle {
                         Layout.preferredWidth: 24
                         Layout.preferredHeight: 24
                         color: "transparent"
@@ -268,12 +213,15 @@ precision: SystemClock.Minutes
                         }
                     }
 
-                    Item { width: 8 }
+                    Item { width: 1 }
 
-Repeater {
-        model: Hyprland.workspaces
 
-        delegate: Text {
+        // workspaces go here
+        Repeater {
+
+             model: Hyprland.workspaces
+
+            delegate: Text {
             id: workspacesNumber
             required property var modelData
             readonly property bool isWorkspaceEmpty: !modelData.toplevels.values.length
@@ -297,17 +245,17 @@ Repeater {
     }
 
 
-
-                    Rectangle {
+Rectangle {
                         Layout.preferredWidth: 1
-                        Layout.preferredHeight: 16
+                        Layout.preferredHeight: root.prefSepHeight
                         Layout.alignment: Qt.AlignVCenter
-                        Layout.leftMargin: 8
+                        Layout.leftMargin: 2
                         Layout.rightMargin: 8
                         color: root.colMuted
                     }
 
-                    Text {
+
+ Text {
                         text: currentLayout
                         color: root.colFg
                         font.pixelSize: root.fontSize
@@ -316,17 +264,18 @@ Repeater {
                         Layout.leftMargin: 5
                         Layout.rightMargin: 5
                     }
-
-                    Rectangle {
+Rectangle {
                         Layout.preferredWidth: 1
-                        Layout.preferredHeight: 16
+                        Layout.preferredHeight: root.prefSepHeight
                         Layout.alignment: Qt.AlignVCenter
                         Layout.leftMargin: 2
                         Layout.rightMargin: 8
                         color: root.colMuted
                     }
 
-                    Text {
+
+Text {
+   // This shows the active window name
                         text: activeWindow
                         color: root.colPurple
                         font.pixelSize: root.fontSize
@@ -337,123 +286,164 @@ Repeater {
                         elide: Text.ElideRight
                         maximumLineCount: 1
                     }
+            //model: 10 //Hyprland.workspaces
+            //Text { text: modelData.id; color: "#cdd6f4" }
 
-                    Text {
+    }
+
+
+
+
+
+
+
+
+
+
+    RowLayout {
+        anchors.centerIn: parent
+        spacing: 8
+    Text {
+        text: "󰥔 " + Qt.formatDateTime(clock.date, "ddd, dd MMM yyyy - hh:mm")
+        color: root.colCyan
+        font.pixelSize: root.fontSize
+        font.family: root.fontFamily
+        font.bold: true
+        }
+        // clock goes here
+    }
+
+
+
+
+
+
+
+    RowLayout {
+        anchors.right: parent.right
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.rightMargin: 14
+        spacing: 16
+
+
+Rectangle {
+                        Layout.preferredWidth: 1
+                        Layout.preferredHeight: root.prefSepHeight
+                        Layout.alignment: Qt.AlignVCenter
+                        Layout.leftMargin: 1
+                        Layout.rightMargin: 1
+                        color: root.colMuted
+                    }
+
+
+Text {
                         text: kernelVersion
                         color: root.colRed
                         font.pixelSize: root.fontSize
                         font.family: root.fontFamily
                         font.bold: true
-                        Layout.rightMargin: 8
+                        Layout.rightMargin: 1
                     }
-
-                    Rectangle {
+Rectangle {
                         Layout.preferredWidth: 1
-                        Layout.preferredHeight: 16
+                        Layout.preferredHeight: root.prefSepHeight
                         Layout.alignment: Qt.AlignVCenter
-                        Layout.leftMargin: 0
-                        Layout.rightMargin: 8
+                        Layout.leftMargin: 1
+                        Layout.rightMargin: 1
                         color: root.colMuted
                     }
 
-                    Text {
-                        text: "CPU: " + cpuUsage + "%"
-                        color: root.colYellow
+
+    // vol, bat, net
+                        Text {
+        text: "Vol " + Math.round((Pipewire.defaultAudioSink?.audio?.volume ?? 0) * 100) + "%"
+                        color: root.colPurple
                         font.pixelSize: root.fontSize
                         font.family: root.fontFamily
                         font.bold: true
-                        Layout.rightMargin: 8
-                    }
+                        Layout.rightMargin: 1
+    }    PwObjectTracker { objects: [Pipewire.defaultAudioSink] }
 
-                    Rectangle {
+Rectangle {
                         Layout.preferredWidth: 1
-                        Layout.preferredHeight: 16
+                        Layout.preferredHeight: root.prefSepHeight
                         Layout.alignment: Qt.AlignVCenter
-                        Layout.leftMargin: 0
-                        Layout.rightMargin: 8
+                        Layout.leftMargin: 1
+                        Layout.rightMargin: 1
                         color: root.colMuted
                     }
 
-                    Text {
+    Text {
+                        text: "Bat " + UPower.displayDevice.percentage * 100 + "%"
+                        color: root.colPurple
+                        font.pixelSize: root.fontSize
+                        font.family: root.fontFamily
+                        font.bold: true
+                        Layout.rightMargin: 1
+         }
+
+
+Rectangle {
+                        Layout.preferredWidth: 1
+                        Layout.preferredHeight: root.prefSepHeight
+                        Layout.alignment: Qt.AlignVCenter
+                        Layout.leftMargin: 1
+                        Layout.rightMargin: 1
+                        color: root.colMuted
+                    }
+
+
+Text {
                         text: " Mem: " + memUsage + "%"
                         color: root.colCyan
                         font.pixelSize: root.fontSize
                         font.family: root.fontFamily
                         font.bold: true
-                        Layout.rightMargin: 8
+                        Layout.rightMargin: 1
                     }
 
-                    Rectangle {
+Rectangle {
                         Layout.preferredWidth: 1
-                        Layout.preferredHeight: 16
+                        Layout.preferredHeight: root.prefSepHeight
                         Layout.alignment: Qt.AlignVCenter
-                        Layout.leftMargin: 0
-                        Layout.rightMargin: 8
+                        Layout.leftMargin: 1
+                        Layout.rightMargin: 1
                         color: root.colMuted
                     }
 
-                    Text {
+
+Text {
                         text: "Disk: " + diskUsage + "%"
                         color: root.colBlue
                         font.pixelSize: root.fontSize
                         font.family: root.fontFamily
                         font.bold: true
-                        Layout.rightMargin: 8
+                        Layout.rightMargin: 1
                     }
-
-                    Rectangle {
+Rectangle {
                         Layout.preferredWidth: 1
-                        Layout.preferredHeight: 16
+                        Layout.preferredHeight: root.prefSepHeight
                         Layout.alignment: Qt.AlignVCenter
-                        Layout.leftMargin: 0
-                        Layout.rightMargin: 8
+                        Layout.leftMargin: 1
+                        Layout.rightMargin: 1
                         color: root.colMuted
                     }
 
-                    Text {
-                        text: "Vol: " + volumeLevel + "%"
-                        color: root.colPurple
+
+Text {
+                        text: "CPU: " + cpuUsage + "%"
+                        color: root.colYellow
                         font.pixelSize: root.fontSize
                         font.family: root.fontFamily
                         font.bold: true
-                        Layout.rightMargin: 8
-                        //MouseArea {
-                         //   anchors.fill: parent
-                          //  onClicked: command("pavucontrol")
-                       // }
+                        Layout.rightMargin: 1
                     }
 
+     }
 
-
-                    Rectangle {
-                        Layout.preferredWidth: 1
-                        Layout.preferredHeight: 16
-                        Layout.alignment: Qt.AlignVCenter
-                        Layout.leftMargin: 0
-                        Layout.rightMargin: 8
-                        color: root.colMuted
-                    }
-
-                    Text {
-                        id: clockText
-                        text: "󰥔 " + Qt.formatDateTime(new Date(), "ddd, MMM dd - hh:mm")
-                        color: root.colCyan
-                        font.pixelSize: root.fontSize
-                        font.family: root.fontFamily
-                        font.bold: true
-                        Layout.rightMargin: 8
-
-                        Timer {
-                            interval: 1000
-                            running: true
-                            repeat: true
-                            onTriggered: clockText.text = "󰥔 " + Qt.formatDateTime(new Date(), "ddd, MMM dd - hh:mm")
-                        }
-                    }
-
-                    Item { width: 8 }
-                }
-            }
-        }
-    }
+SystemClock {
+id: clock
+precision: SystemClock.Minutes
+}
+}
 }
