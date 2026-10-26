@@ -210,7 +210,7 @@ Rectangle {
 
                         Image {
                             anchors.fill: parent
-                            source: "file://home/w/.config/quickshell/icons/btw.png"
+                            source: "icons/btw.png"
                             fillMode: Image.PreserveAspectFit
                         }
                     }
@@ -458,8 +458,8 @@ RowLayout {
  Image {
             Layout.alignment: Qt.AlignVCenter
             source: volume.percent <= 0
-               ? "/home/w/.config/quickshell/shared/volume-muted.svg"
-               : "/home/w/.config/quickshell/shared/volume.svg"
+               ? "shared/volume-muted.svg"
+               : "shared/volume.svg"
             sourceSize.width: 18
             sourceSize.height: 18
             width: 18
