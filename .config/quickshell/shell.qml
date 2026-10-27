@@ -276,20 +276,27 @@ Rectangle {
                     }
 
 
+
+
+
+
+
+
 Text {
    // This shows the active window name
+                        visible: true
                         text: activeWindow
                         color: root.colPurple
-                        font.pixelSize: root.fontSize
+                        font.pixelSize: root.fontSize - 4
                         font.family: root.fontFamily
                         font.bold: true
                         Layout.fillWidth: true
-                        Layout.leftMargin: 3
-                        elide: Text.ElideRight
-                        maximumLineCount: 1
+                        Layout.maximumWidth: 400
+               //         elide: Text.ElideRight
+                        clip: true
+                        maximumLineCount: 2
+                        wrapMode: Text.WordWrap
                     }
-            //model: 10 //Hyprland.workspaces
-            //Text { text: modelData.id; color: "#cdd6f4" }
 
     }
 
@@ -329,6 +336,7 @@ Text {
 
 
 Rectangle {
+                        visible: true
                         Layout.preferredWidth: 1
                         Layout.preferredHeight: root.prefSepHeight
                         Layout.alignment: Qt.AlignVCenter
@@ -339,12 +347,20 @@ Rectangle {
 
 
 Text {
+                        visible: true
                         text: kernelVersion
                         color: root.colRed
-                        font.pixelSize: root.fontSize
+                        font.pixelSize: root.fontSize - 4
                         font.family: root.fontFamily
                         font.bold: true
                         Layout.rightMargin: 1
+                //        Layout.fillWidth: true
+                        Layout.maximumWidth: 100
+               //         elide: Text.ElideRight
+                        clip: true
+                        maximumLineCount: 2
+                        wrapMode: Text.WordWrap
+
                     }
 Rectangle {
                         Layout.preferredWidth: 1
