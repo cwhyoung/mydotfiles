@@ -14,38 +14,37 @@ import QtQuick.Effects
 ShellRoot {
     id: root
 
-    // Theme colors
-    property color colBg: "#1a1b26"
-    property color colFg: "#a9b1d6"
-    property color colMuted: "#444b6a"
-    property color colCyan: "#0db9d7"
-    property color colPurple: "#ad8ee6"
-    property color colRed: "#f7768e"
-    property color colYellow: "#e0af68"
-    property color colBlue: "#7aa2f7"
+ // Theme colors
+ property color colBg: "#1a1b26"
+ property color colFg: "#a9b1d6"
+ property color colMuted: "#444b6a"
+ property color colCyan: "#0db9d7"
+ property color colPurple: "#ad8ee6"
+ property color colRed: "#f7768e"
+ property color colYellow: "#e0af68"
+ property color colBlue: "#7aa2f7"
 
-    // Font
-    property string fontFamily: "JetBrainsMono Nerd Font"
-    property int fontSize: 18
+ // Font
+ property string fontFamily: "JetBrainsMono Nerd Font"
+ property int fontSize: 18
+ // System info properties
+ property string kernelVersion: "Linux"
+ property int cpuUsage: 0
+ property int memUsage: 0
+ property int diskUsage: 0
+ property int volumeLevel: 0
+ property string activeWindow: "Window"
+ property string currentLayout: "Tile"
+ property int prefSepHeight: 38
 
-    // System info properties
-    property string kernelVersion: "Linux"
-    property int cpuUsage: 0
-    property int memUsage: 0
-    property int diskUsage: 0
-    property int volumeLevel: 0
-    property string activeWindow: "Window"
-    property string currentLayout: "Tile"
-    property int prefSepHeight: 38
-
-    // CPU tracking
-    property var lastCpuIdle: 0
-    property var lastCpuTotal: 0
-
+ // CPU tracking
+ property var lastCpuIdle: 0
+ property var lastCpuTotal: 0
 
 
-// Kernel version
-    Process {
+
+ // Kernel version
+        Process {
         id: kernelProc
         command: ["uname", "-r"]
         stdout: SplitParser {
@@ -219,32 +218,163 @@ Rectangle {
 
 
         // workspaces go here
+        
+
+      Rectangle {
+            width: workspaceRow.implicitWidth
+            height: workspaceRow.implicitHeight 
+            radius: height / 2
+                        color: "#040e0d"
+    
+    Row {
+        id: workspaceRow
+        required property var modelData
+        spacing : 3
+
+            // Minimum number of workspaces to always display, even when empty. The list
+         // still grows beyond this to reveal any higher-numbered workspace that
+        // exists (e.g. switching to workspace 6 while this is 5 adds a 6th dot).
+        property int minWorkspaces: 5
+
+        // The individual workspace buttons, exposed so StatusbarWindow can splice
+      // them into its keyboard-navigation list. Rebuilt whenever workspaces are
+     // added or removed.
+     property var navButtons: []
+
+     function rebuildNavButtons(): void {
+        let a = []
+        for (let i = 0; i < rep.count; i++)
+            a.push(rep.itemAt(i))
+        workspaceRow.navButtons = a
+     }
+
+      // The workspace ids to render: 1..N, where N is at least minWorkspaces and
+     // extends to cover the highest-numbered workspace that currently exists.
+        readonly property var workspaceIds: {
+        let maxId = Math.max(1, workspaceRow.minWorkspaces)
+        const list = Hyprland.workspaces.values
+        for (let i = 0; i < list.length; i++)
+            if (list[i].id > maxId)
+                maxId = list[i].id
+        let ids = []
+        for (let id = 1; id <= maxId; id++)
+            ids.push(id)
+        return ids
+     }
+
+     // The live Hyprland workspace for an id, or null when it is empty (Hyprland
+     // only tracks workspaces that hold windows or are focused).
+     function workspaceById(id: int): var {
+        const list = Hyprland.workspaces.values
+        for (let i = 0; i < list.length; i++)
+            if (list[i].id === id)
+                return list[i]
+        return null
+     }
+     
         Repeater {
+            id: rep
+                model: workspaceRow.workspaceIds
 
-             model: Hyprland.workspaces
+                 onItemAdded: workspaceRow.rebuildNavButtons()
+         onItemRemoved: workspaceRow.rebuildNavButtons()
 
-            delegate: Text {
-            id: workspacesNumber
-            required property var modelData
-            readonly property bool isWorkspaceEmpty: !modelData.toplevels.values.length
+            delegate: Rectangle {
+            id: ws
+            required property var modelData   // the workspace id (int)
+            // Set by StatusbarWindow's keyboard navigation.
+            property bool focused: false
 
-            Layout.preferredWidth: 24
-            horizontalAlignment: Text.AlignHCenter
+            // Whether this workspace is the currently focused one.
+            readonly property bool isActive: Hyprland.focusedWorkspace
+                && Hyprland.focusedWorkspace.id === ws.modelData
+            // Whether the workspace currently holds windows (exists in Hyprland).
+            readonly property bool occupied: workspaceRow.workspaceById(ws.modelData) !== null
 
-            text: modelData.id
-            font.pixelSize: root.fontSize
-            font.bold: true
-            color: modelData.focused ? "#89b4fa" : (isWorkspaceEmpty ? "#45475a" : "#cdd6f4")
-            font.underline: modelData.active
-
-            MouseArea {
-                anchors.fill: parent
-                cursorShape: Qt.PointingHandCursor
-                acceptedButtons: Qt.LeftButton
-                onClicked: parent.modelData.activate()
+            // Run this workspace's action (mouse click or keyboard Return).
+            // Hyprland with Lua dispatchers ignores the plain "workspace N"
+            // string, so branch on usingLua the same way the overview does.
+            function activate(): void {
+                if (Hyprland.usingLua)
+                    Hyprland.dispatch("hl.dsp.focus({workspace = '" + ws.modelData + "'})")
+                else
+                    Hyprland.dispatch("workspace " + ws.modelData)
             }
+
+
+
+            implicitWidth: 26
+            implicitHeight: 26
+            radius: 13
+        
+
+            // Empty, unfocused workspaces are dimmed to set them apart from the
+            // ones that hold windows.
+            opacity: (ws.isActive || ws.occupied || wsMouse.containsMouse) ? 1 : 0.45
+            Behavior on opacity {
+                NumberAnimation { duration: 300; easing.type: Easing.OutQuint }
+            }
+
+            color: ws.isActive
+                ? "#3dd1b0"
+                : (wsMouse.containsMouse ? "#0f211f" : "transparent")
+            border.color: '#0a8c1c'
+            border.width: ws.isActive ? 0 : 1
+
+            // Crossfade the fill between active / hover / inactive states so the
+            // background of the active circle fades in and the previous one out.
+            Behavior on color {
+                ColorAnimation { duration: 500; easing.type: Easing.OutQuint }
+            }
+            // Fade the outline in/out as the fill takes over on activation.
+            Behavior on border.width {
+                NumberAnimation { duration: 500; easing.type: Easing.OutQuint }
+            }
+
+            // Keyboard-selection ring, distinct from the active-workspace fill.
+                Rectangle {
+                anchors.fill: parent
+                anchors.margins: -3
+                radius: width / 2
+                color: "transparent"
+                border.color: '#0a8c1c'
+                border.width: 2
+                opacity: ws.focused ? 1 : 0
+                Behavior on opacity {
+                    NumberAnimation { duration: 150 }
+                }
+            }
+
+                Text {
+                anchors.centerIn: parent
+                text: ws.modelData
+                color: ws.isActive ?  "#0f211f" :"#3dd1b0" 
+                font.family: "SP Pro Display"
+                font.pixelSize: 15
+                font.weight: 800
+                font.bold: true
+
+                    // Match the fill crossfade so the label recolors in step.
+                    Behavior on color {
+                    ColorAnimation { duration: 500; easing.type: Easing.OutQuint }
+                }
+            }
+
+                MouseArea {
+                id: wsMouse
+                anchors.fill: parent
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                onClicked: ws.activate()
+                    }
+                }
+            }
+         }   
         }
-    }
+    
+
+
+
 
 
 Rectangle {
