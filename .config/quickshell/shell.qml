@@ -209,8 +209,9 @@ Rectangle {
 
                         Image {
                             anchors.fill: parent
-                            source: "icons/btw.png"
+                            source: "shared/icons/terminal.svg"
                             fillMode: Image.PreserveAspectFit
+                            
                         }
 
                         MouseArea {
@@ -218,7 +219,7 @@ Rectangle {
                             hoverEnabled: true
                             cursorShape: Qt.PointingHandCursor
                             onClicked: {
-                                Quickshell.execDetached(["sh", "-c", "kitty"])
+                                Quickshell.execDetached(["sh", "-c", "kitty "])
                             }
                         }
                     }
