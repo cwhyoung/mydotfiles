@@ -212,6 +212,15 @@ Rectangle {
                             source: "icons/btw.png"
                             fillMode: Image.PreserveAspectFit
                         }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: {
+                                Quickshell.execDetached(["sh", "-c", "kitty"])
+                            }
+                        }
                     }
 
                     Item { width: 1 }
