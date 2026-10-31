@@ -2,8 +2,6 @@ import QtQuick
 import QtQuick.Shapes
 import Quickshell
 import Quickshell.Hyprland
-import qs.components
-import qs.panels
 
 PanelWindow {
     id: window
