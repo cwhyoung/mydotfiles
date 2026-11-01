@@ -3,7 +3,7 @@
 
 
   Rectangle {
-    id: clockPanel
+    id: clocksPanel
             color: "#040e0d"
             width: clock.implicitWidth + 22
             height: clock.implicitHeight + 10

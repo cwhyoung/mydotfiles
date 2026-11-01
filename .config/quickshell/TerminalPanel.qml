@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import QtQuick
 
 Rectangle {
+                        id: terminalPanel
                         Layout.preferredWidth: 24
                         Layout.preferredHeight: 24
                         color: "transparent"

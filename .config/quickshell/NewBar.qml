@@ -1,6 +1,7 @@
 import Quickshell
 import QtQuick.Layouts
 import QtQuick
+import qs.CustomTheme
 
 
 PanelWindow {  
@@ -25,17 +26,22 @@ PanelWindow {
                 //Put items you want on the left side of the bar here
              anchors.left: parent.left 
 
+             
+
+             
+            
+
               TerminalPanel {}              
 
               HyprwsPanel {}
-              
+             
             }
 
             RowLayout {
                 //Put items you want in the center of the bar here
             
             anchors.centerIn: parent
-            spacing: 6    
+            spacing: 3 
             
             ClockPanel {}
                 
@@ -53,6 +59,8 @@ PanelWindow {
                // NetworkPanel {}
                 
                 //LayoutPanel {}   
+
+               // CpuProcPnl {}
                 
              }
 }
