@@ -1,12 +1,21 @@
 import Quickshell
+import Quickshell.Wayland
+import Quickshell.Hyprland
 import QtQuick.Layouts
+import QtQuick.Effects
 import QtQuick
 import Quickshell.Io
 import "CustomTheme"
+import qs.CustomTheme
 
 
 PanelWindow {  
     id: bar
+
+
+         
+
+
 
             anchors{
                 left: true
@@ -21,7 +30,7 @@ PanelWindow {
             }
 
             implicitHeight: 34
-            color: "transparent"
+            color: Theme.surface
               
                         
 
@@ -29,20 +38,15 @@ PanelWindow {
                 //Put items you want on the left side of the bar here
              anchors.left: parent.left 
 
-             //Rectangle {
-
-               //         color: "black"
-                 //       radius: height / 2
-                   //     Layout.preferredWidth: TerminalPanel.Width + 6 + HyprwsPanel.Width + 6
-            
-                     //   implicitWidth: TerminalPanel.Width + 6 + HyprwsPanel.Width + 6
-                       // implicitHeight: Theme.prefSepHeight
+              
+                
+                      
             
                         TerminalPanel {}              
 
                           HyprwsPanel {}
              
-            // }
+                
             }
 
             RowLayout {
@@ -52,13 +56,19 @@ PanelWindow {
             spacing: 3 
             
             ClockPanel {}
-                
+
+            SwayvncModule {}
+               CalendarPanel {}
             }
 
             RowLayout {
                 //Put items you want on the right side of the bar here
                 anchors.right: parent.right
                 spacing: 6
+
+                VolumeModule {}
+
+                SystemTrayPanel {}
 
                // BatteryPanel {}
                 
