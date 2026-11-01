@@ -10,20 +10,17 @@ import qs.CustomTheme
 
 PanelWindow {
     id: bar
+                    anchors {
+                            left: true
+                            right: true
+                            top: true
+                            }
 
-    
-
-    anchors {
-        left: true
-        right: true
-        top: true
-    }
-
-    margins {
-        left: 10
-        right: 10
-        top: 10
-    }
+                      margins {
+                        left: 10
+                        right: 10
+                        top: 10
+                         }
 
     implicitHeight: 34
     color: Theme.colBg || "transparent"
