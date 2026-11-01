@@ -29,7 +29,7 @@ QtObject {
  property int volumeLevel: 0
  property string activeWindow: "Window"
  property string currentLayout: "Tile"
- property int prefSepHeight: 38
+ property int prefSepHeight: 34
 
     // Dynamic color properties
     property color background: "#0e1514"

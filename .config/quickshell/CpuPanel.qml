@@ -43,6 +43,7 @@ import qs.CustomTheme
         }
         Component.onCompleted: running = true
     }
+    
 Timer {
         interval: 2000
         running: true
