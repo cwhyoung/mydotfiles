@@ -81,6 +81,7 @@ PanelWindow {
                 CpuPanel {}
 
                  // Slow timer for system stats
+                 PowerModule {}
     
     }
                 
