@@ -88,9 +88,7 @@ import QtQuick
                 NumberAnimation { duration: 300; easing.type: Easing.OutQuint }
                 }
 
-                color: ws.isActive
-                ? "#3dd1b0"
-                : (wsMouse.containsMouse ? "#0f211f" : "transparent")
+                color: ws.isActive ? "#3dd1b0": (wsMouse.containsMouse ? "#0f211f" : "transparent")
                 border.color: '#0a8c1c'
                 border.width: ws.isActive ? 0 : 1
 
