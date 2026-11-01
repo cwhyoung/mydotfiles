@@ -1,7 +1,8 @@
 import Quickshell
 import QtQuick.Layouts
 import QtQuick
-import qs.CustomTheme
+import Quickshell.Io
+import "CustomTheme"
 
 
 PanelWindow {  
@@ -21,20 +22,27 @@ PanelWindow {
 
             implicitHeight: 34
             color: "transparent"
+              
+                        
 
             RowLayout {
                 //Put items you want on the left side of the bar here
              anchors.left: parent.left 
 
-             
+             //Rectangle {
 
-             
+               //         color: "black"
+                 //       radius: height / 2
+                   //     Layout.preferredWidth: TerminalPanel.Width + 6 + HyprwsPanel.Width + 6
             
+                     //   implicitWidth: TerminalPanel.Width + 6 + HyprwsPanel.Width + 6
+                       // implicitHeight: Theme.prefSepHeight
+            
+                        TerminalPanel {}              
 
-              TerminalPanel {}              
-
-              HyprwsPanel {}
+                          HyprwsPanel {}
              
+            // }
             }
 
             RowLayout {
@@ -60,7 +68,12 @@ PanelWindow {
                 
                 //LayoutPanel {}   
 
-               // CpuProcPnl {}
+                CpuPanel {}
+
+                 // Slow timer for system stats
+    
+    }
                 
-             }
-}
+                }
+   
+

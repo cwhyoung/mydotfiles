@@ -1,10 +1,17 @@
 import Quickshell
 import Quickshell.Io
 import QtQuick
+import QtQuick.Layouts
 import qs.CustomTheme
 
 
     Row {
+
+ // CPU tracking
+ property var lastCpuIdle: 0
+ property var lastCpuTotal: 0
+ property int cpuUsage: 0
+     
     Process {
         id: cpuProc
         command: ["sh", "-c", "head -1 /proc/stat"]
@@ -36,21 +43,31 @@ import qs.CustomTheme
         }
         Component.onCompleted: running = true
     }
+Timer {
+        interval: 2000
+        running: true
+        repeat: true
+        onTriggered: {
+            cpuProc.running = true
+      
+        }
+}
+
 Rectangle {
                         Layout.preferredWidth: 1
-                        Layout.preferredHeight: root.prefSepHeight
+                        Layout.preferredHeight: Theme.prefSepHeight
                         Layout.alignment: Qt.AlignVCenter
                         Layout.leftMargin: 1
                         Layout.rightMargin: 1
-                        color: root.colMuted
+                        color: Theme.colMuted
                     }
 
 
 Text {
                         text: " " + cpuUsage + "%"
-                        color: root.colYellow
-                        font.pixelSize: root.fontSize
-                        font.family: root.fontFamily
+                        color: Theme.colYellow
+                        font.pixelSize: Theme.fontSize
+                        font.family: Theme.fontFamily
                         font.bold: true
                         Layout.rightMargin: 1
                     }

@@ -1,14 +1,14 @@
 pragma Singleton
 import Quickshell
 import QtQuick
-import QtQuick.Io
+import Quickshell.Io
 
 
 QtObject {
     id: root
 
 
-/ Theme colors
+// Theme colors
  property color colBg: "#1a1b26"
  property color colFg: "#a9b1d6"
  property color colMuted: "#444b6a"
