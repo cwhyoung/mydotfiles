@@ -5,4 +5,14 @@ import qs.CustomTheme
 BarButton {
     iconSrc: "shared/icons/power.svg"
     onClicked: Theme.sideBarVisible = Theme.sideBarVisible === 0 ? 1 : 0   
+
+Timer {
+        interval: 9000
+        running: true
+        repeat: false
+        onTriggered: {
+                       Theme.sideBarVisible = Theme.sideBarVisible === 0 ? 1 : 0  
+        
+        }
+    }
 }

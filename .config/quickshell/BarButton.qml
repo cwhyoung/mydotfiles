@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Controls
 import QtQuick.Effects
 import qs.CustomTheme
 
@@ -6,6 +7,7 @@ import qs.CustomTheme
 Rectangle {
     id: btn
     property string iconSrc: ""
+    property string tooltipText: ""
     property bool colorize: true
     // Set by the keyboard navigation in StatusbarWindow to highlight the
     // currently selected module.
@@ -26,6 +28,10 @@ Rectangle {
     // (colorize only controls whether the icon itself is recolored, so the
     // ML4W logo keeps its own colors while still matching the others.)
     color: btn.active ? Theme.primary : "transparent"
+
+    ToolTip.visible: btn.tooltipText.length > 0 && mouseArea.containsMouse
+    ToolTip.text: btn.tooltipText
+    ToolTip.delay: 500
 
     // Fade the accent circle in on hover/selection and out again on leave.
     Behavior on color {

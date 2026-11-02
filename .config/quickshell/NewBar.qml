@@ -49,8 +49,22 @@ Row {
         TerminalPanel {  }
 
         HyprwsPanel {  }
+
+        Rectangle {
+            width: 1
+            height: 22
+            anchors.verticalCenter: parent.verticalCenter
+            color: Theme.colMuted
+        }
       
         WindowModeModule {  }
+        Rectangle {
+            left.margin: 4
+            width: 1
+            height: 22
+            anchors.verticalCenter: parent.verticalCenter
+            color: Theme.colMuted
+        }
        
         ActiveWindowModule {  }
 

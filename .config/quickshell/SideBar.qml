@@ -50,22 +50,31 @@ PanelWindow {
 
             BarButton {
                 iconSrc: "shared/icons/power.svg"
-             
+                tooltipText: "Power Off"
                 onClicked: Quickshell.execDetached(["bash", "-c", "poweroff"])
             }
             BarButton {
                 iconSrc: "shared/icons/reboot.svg"
-                
+                tooltipText: "Reboot"
                 onClicked: Quickshell.execDetached(["bash", "-c", "reboot"])
             }
             BarButton {
+                iconSrc: "shared/icons/suspend.svg"
+                tooltipText: "Suspend"
+                onClicked: Quickshell.execDetached(["bash", "-c", "systemctl hibernate"])
+            }
+            BarButton {
                 iconSrc: "shared/icons/logout.svg"
+                tooltipText: "Logout"
                 onClicked: Quickshell.execDetached(["bash", "-c", "pkill hypr"])
             }
             BarButton {
                 iconSrc: "shared/icons/lock.svg"
-                onClicked: Quickshell.execDetached("hyprctl", "dispatch", "lock")
+                tooltipText: "Lock Screen"
+                onClicked: Quickshell.execDetached(["bash", "-c", "hyprlock"])
             }
         }
     }
+
+
 }
