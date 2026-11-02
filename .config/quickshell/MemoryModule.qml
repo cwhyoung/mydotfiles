@@ -1,13 +1,12 @@
 import Quickshell
 import Quickshell.Io
 import QtQuick
-import QtQuick.Layouts
 import qs.CustomTheme
 
 
 
 // Memory usage module
-Row {
+Text {
    property int memUsage: 0
 
    Process {
@@ -25,25 +24,16 @@ Row {
         Component.onCompleted: running = true
     }
        
-    Rectangle {
-                        visible: UPower.displayDevice.percentage > 0
-                        Layout.preferredWidth: 1
-                        Layout.preferredHeight: Theme.prefSepHeight
-                        Layout.alignment: Qt.AlignVCenter
-                        Layout.leftMargin: 1
-                        Layout.rightMargin: 1
-                        color: Theme.colMuted
-                    }
 
 
-Text {
+
                         text: "  " + memUsage + "%"
                         color: Theme.colCyan
                         font.pixelSize: Theme.fontSize
                         font.family: Theme.fontFamily
                         font.bold: true
-                        Layout.rightMargin: 1
-                    }
+                        
+                    
 
 
 // Slow timer for system stats

@@ -3,6 +3,7 @@ import Quickshell.Wayland
 import Quickshell.Hyprland
 import QtQuick.Layouts
 import QtQuick.Effects
+import Quickshell.Services.UPower
 import QtQuick
 import Quickshell.Io
 import "CustomTheme"
@@ -43,16 +44,17 @@ PanelWindow {
 
     RowLayout {
         anchors.right: parent.right
-        spacing: 6
+        spacing: 3
 
         VolumeModule {}
         SepLine {}
         SystemTrayPanel {}
 SepLine {}
          KernelModule {}
-       SepLine {}  
+        SepLine {visible: UPower.displayDevice.percentage > 0}
         BatteryModule {}
-
+        SepLine {}
+        StorageModule {}
 SepLine {}
                 MemoryModule {}
        
