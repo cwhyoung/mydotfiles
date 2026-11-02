@@ -38,9 +38,9 @@ Rectangle {
             implicitWidth: buttons.implicitWidth
             implicitHeight: buttons.implicitHeight
             radius: height / 2
-            color:  Theme.colBg  || "transparent"  
-        
-Row { 
+            color:  Theme.colBg  || "transparent"
+
+Row {
             padding: 4
             spacing: 3
             anchors.left: parent.left
@@ -56,16 +56,15 @@ Row {
             anchors.verticalCenter: parent.verticalCenter
             color: Theme.colMuted
         }
-      
+
         WindowModeModule {  }
         Rectangle {
-            left.margin: 4
             width: 1
             height: 22
             anchors.verticalCenter: parent.verticalCenter
             color: Theme.colMuted
         }
-       
+
         ActiveWindowModule {  }
 
         //}
@@ -97,8 +96,8 @@ SepLine {}
         StorageModule {}
 SepLine {}
                 MemoryModule {}
-       
-          
+
+
         SepLine {}
 
         CpuPanel {}
