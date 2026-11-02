@@ -50,6 +50,7 @@ PanelWindow {
         SystemTrayPanel {}
 SepLine {}
          KernelModule {}
+       SepLine {}  
         BatteryModule {}
 
 SepLine {}

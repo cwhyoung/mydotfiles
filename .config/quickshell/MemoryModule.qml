@@ -6,7 +6,7 @@ import qs.CustomTheme
 
 
 
-// Kernel version
+// Memory usage module
 Row {
    property int memUsage: 0
 
