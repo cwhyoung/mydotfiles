@@ -9,8 +9,11 @@ import Quickshell.Io
 import "CustomTheme"
 import qs.CustomTheme
 
+ShellRoot {
+    id: root
 PanelWindow {
     id: bar
+    color: "transparent"
                     anchors {
                             left: true
                             right: true
@@ -21,24 +24,39 @@ PanelWindow {
                         left: 2
                         right: 2
                         top: 2
+                        bottom: 2
                          }
 
     implicitHeight: Theme.prefSepHeight
-    color: Theme.colBg || "transparent"
+   //color: Theme.colBg || "transparent"
 
     RowLayout {
         anchors.left: parent.left
-
-        //PillRound { visible: true 
+Rectangle {
+            id: background
+            anchors.centerIn: parent
+            implicitWidth: buttons.implicitWidth
+            implicitHeight: buttons.implicitHeight
+            radius: height / 2
+            color:  Theme.colBg  || "transparent"  
+        
+Row { 
+            padding: 4
+            spacing: 3
+            anchors.left: parent.left
+            id: buttons
 
         TerminalPanel {  }
-        HyprwsPanel { }
-        SepLine {}
+
+        HyprwsPanel {  }
+      
         WindowModeModule {  }
-        SepLine {}
+       
         ActiveWindowModule {  }
 
         //}
+    }
+    }
     }
 
     RowLayout {
@@ -73,4 +91,10 @@ SepLine {}
         SepLine {}
         PowerModule {}
     }
+}
+SideBar {
+    id: sideBar
+    //visible: Theme.sideBarVisible
+
+}
 }
