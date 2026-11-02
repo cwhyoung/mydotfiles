@@ -32,10 +32,10 @@ Process {
                     Text {
                         text: kernelVersion
                         color: Theme.colRed
-                        font.pixelSize: Theme.fontSize
+                        width: 127
+                        font.pixelSize: Theme.fontSize - 4
                         font.family: Theme.fontFamily
                         font.bold: true
-                        Layout.maximumWidth: 100
                         clip: true
                         maximumLineCount: 2
                         wrapMode: Text.WordWrap

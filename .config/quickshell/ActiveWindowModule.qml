@@ -8,7 +8,7 @@ import qs.CustomTheme
 
 
 // Active window module
-Text {
+Row {
     id: root
     property string activeWindow: "Window"
 
@@ -49,14 +49,15 @@ Text {
        
 
 
-
+Text {
                         text: activeWindow
                         color: Theme.colFg
-                        font.pixelSize: Theme.fontSize
+                        font.pixelSize: Theme.fontSize - 4
                         font.family: Theme.fontFamily
+                        width: 400
                         font.bold: true
-                         clip: true
+                        clip: true
                         maximumLineCount: 2
                         wrapMode: Text.WordWrap
-
+}
     }
