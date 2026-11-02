@@ -18,19 +18,27 @@ PanelWindow {
                             }
 
                       margins {
-                        left: 10
-                        right: 10
-                        top: 10
+                        left: 2
+                        right: 2
+                        top: 2
                          }
 
-    implicitHeight: 34
+    implicitHeight: Theme.prefSepHeight
     color: Theme.colBg || "transparent"
 
     RowLayout {
         anchors.left: parent.left
 
-        TerminalPanel {}
-        HyprwsPanel {}
+        //PillRound { visible: true 
+
+        TerminalPanel {  }
+        HyprwsPanel { }
+        SepLine {}
+        WindowModeModule {  }
+        SepLine {}
+        ActiveWindowModule {  }
+
+        //}
     }
 
     RowLayout {
