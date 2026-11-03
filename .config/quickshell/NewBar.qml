@@ -31,10 +31,10 @@ PanelWindow {
    //color: Theme.colBg 
 
     RowLayout {
-        anchors.left: parent.left
+        Layout.alignment: Qt.AlignLeft
 Rectangle {
             id: background
-            anchors.centerIn: parent
+            Layout.alignment: Qt.AlignLeft
             implicitWidth: buttons.implicitWidth
             implicitHeight: buttons.implicitHeight
             radius: height / 2

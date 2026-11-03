@@ -20,7 +20,7 @@ QtObject {
 
  // Font
  property string fontFamily: "JetBrainsMono Nerd Font"
- property int fontSize: 18
+ property int fontSize: 16
  // System info properties
  property string kernelVersion: "Linux"
  property int cpuUsage: 0
