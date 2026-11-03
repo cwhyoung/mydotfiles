@@ -19,8 +19,8 @@ QtObject {
  property color colBlue: "#7aa2f7"
 
  // Font
- property string fontFamily: "JetBrainsMono Nerd Font"
- property int fontSize: 16
+ property string fontFamily: "SF Pro Display"
+ property int fontSize: 18
  // System info properties
  property string kernelVersion: "Linux"
  property int cpuUsage: 0

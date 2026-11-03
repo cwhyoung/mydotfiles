@@ -56,7 +56,6 @@ Text {
                         font.family: Theme.fontFamily
                         width: 400
                         font.bold: true
-                        clip: true
                         maximumLineCount: 2
                         wrapMode: Text.WordWrap
 }

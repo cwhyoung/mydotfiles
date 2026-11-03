@@ -15,8 +15,8 @@ PanelWindow {
     visible: Theme.sideBarVisible
 
     // --- WAYLAND CONFIGURATION ---
-   // WlrLayershell.layer: WlrLayer.Overlay
-   // exclusionMode: WlrLayershell.Ignore
+    WlrLayershell.layer: WlrLayer.Overlay
+    exclusionMode: WlrLayershell.Ignore
 
     anchors {
         right: true
@@ -40,10 +40,13 @@ PanelWindow {
         implicitHeight: buttons.implicitHeight
         radius: width / 2
         color:  Theme.surface_bright  || "transparent"
+        border.color: Theme.primary_container || "transparent"
+        border.width: 6
+        
         
 
         Column {
-            padding: 10
+            padding: 15
             spacing: 5
             anchors.centerIn: parent
             id: buttons
@@ -62,6 +65,11 @@ PanelWindow {
                 iconSrc: "shared/icons/suspend.svg"
                 tooltipText: "Suspend"
                 onClicked: Quickshell.execDetached(["bash", "-c", "systemctl hibernate"])
+            }
+               BarButton {
+                iconSrc: "shared/icons/theme.svg"
+                tooltipText: "Inhibit Sleep"
+                onClicked: Quickshell.execDetached(["bash", "-c", "hypridle --inhibit"])
             }
             BarButton {
                 iconSrc: "shared/icons/logout.svg"

@@ -42,27 +42,27 @@ Rectangle {
 
 Row {
             padding: 4
-            spacing: 7
+            spacing: 6
             anchors.left: parent.left
             id: buttons
 
         TerminalPanel { anchors.verticalCenter: parent.verticalCenter }
 
-        HyprwsPanel {anchors.verticalCenter: parent.verticalCenter }
+        Hyprws1Panel {anchors.verticalCenter: parent.verticalCenter }
 
         Rectangle {
-            width: 1
+            width: 2
             height: Theme.prefSepHeight
             anchors.verticalCenter: parent.verticalCenter
-            color: Theme.colMuted
+            color: Theme.colPurple
         }
 
         WindowModeModule { anchors.verticalCenter: parent.verticalCenter }
         Rectangle {
-            width: 1
+            width: 2
             height: Theme.prefSepHeight
             anchors.verticalCenter: parent.verticalCenter
-            color: Theme.colMuted
+            color: Theme.colPurple
         }
 
         ActiveWindowModule { anchors.verticalCenter: parent.verticalCenter }
