@@ -28,7 +28,7 @@ PanelWindow {
                          }
 
     implicitHeight: background.implicitHeight //Theme.prefSepHeight
-   //color: Theme.colBg || "transparent"
+   //color: Theme.colBg 
 
     RowLayout {
         anchors.left: parent.left
@@ -42,30 +42,30 @@ Rectangle {
 
 Row {
             padding: 4
-            spacing: 3
+            spacing: 7
             anchors.left: parent.left
             id: buttons
 
-        TerminalPanel {  }
+        TerminalPanel { anchors.verticalCenter: parent.verticalCenter }
 
-        HyprwsPanel {  }
+        HyprwsPanel {anchors.verticalCenter: parent.verticalCenter }
 
         Rectangle {
             width: 1
-            height: 22
+            height: Theme.prefSepHeight
             anchors.verticalCenter: parent.verticalCenter
             color: Theme.colMuted
         }
 
-        WindowModeModule {  }
+        WindowModeModule { anchors.verticalCenter: parent.verticalCenter }
         Rectangle {
             width: 1
-            height: 22
+            height: Theme.prefSepHeight
             anchors.verticalCenter: parent.verticalCenter
             color: Theme.colMuted
         }
 
-        ActiveWindowModule {  }
+        ActiveWindowModule { anchors.verticalCenter: parent.verticalCenter }
 
         //}
     }
