@@ -19,7 +19,6 @@ hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser), {description = "Google Chro
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu), {description = "Launch App Selection Screen - Rofi"})
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(runner), {description = "Launch Hypr App Launcher"})
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo(), {description = "Toggle window size - weird"})
-
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }), { description = "Toggle Fullscreen" })
 hl.bind(mainMod .. " + M", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }), { description = "Toggle Maximize Window" })
@@ -33,8 +32,7 @@ hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }), { descripti
 hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.resize({ x = 100, y = 0, relative = true }), { repeating = true, description = "Increase window width with keyboard" })
 hl.bind(mainMod .. " + SHIFT + left", hl.dsp.window.resize({ x = -100, y = 0, relative = true }), { repeating = true, description = "Reduce window width with keyboard" })
 hl.bind(mainMod .. " + SHIFT + down", hl.dsp.window.resize({ x = 0, y = 100, relative = true }), { repeating = true, description = "Increase window height with keyboard" })
-hl.bind(mainMod .. " + SHIFT + up", hl.dsp.window.resize({ x = 0, y = -100, relative = true }), { repeating = true, description = "Reduce window height with keyboard" })
-hl.bind(mainMod .. " + G", hl.dsp.group.toggle(), { description = "Toggle window group" })
+
 hl.bind(mainMod .. " + ALT + left", hl.dsp.window.swap({ direction = "l" }), { description = "Swap tiled window left" })
 hl.bind(mainMod .. " + ALT + right", hl.dsp.window.swap({ direction = "r" }), { description = "Swap tiled window right" })
 hl.bind(mainMod .. " + ALT + up", hl.dsp.window.swap({ direction = "u" }), { description = "Swap tiled window up" })
@@ -50,6 +48,35 @@ hl.bind(mainMod .. " + CTRL + X", hl.dsp.exec_cmd("~/.config/hypr/scripts/layout
 -- Actions
 hl.bind(mainMod .. " + CTRL + K", hl.dsp.exec_cmd("~/.config/hypr/scripts/keybindings.sh"), { description = "Show keybindings" })
 hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("hyprlock"), { description = "Lock Screen" })
+
+hl.bind(mainMod .." + Tab", function ()
+    local layouts   = { "scrolling", "dwindle", "master", "monocle" }
+    local workspace = hl.get_active_workspace()
+    if hl.get_active_special_workspace() then
+        workspace = hl.get_active_special_workspace()
+    end
+
+    local next_layout = "dwindle"
+
+    if not workspace then
+        return
+    end
+
+    for i = 1, #layouts do
+        if layouts[i] == workspace.tiled_layout then
+            local next_layout_idx = (i % #layouts) + 1
+            next_layout = layouts[next_layout_idx]
+            break
+        end
+    end
+
+    if workspace.special then
+        hl.workspace_rule({ workspace = tostring(workspace.name), layout = next_layout })
+    else
+        hl.workspace_rule({ workspace = "name:" .. tostring(workspace.name), layout = next_layout })
+    end
+end)
+
 
 -- Hypr App Switcher
 hl.bind("ALT + Tab",         hl.dsp.exec_cmd("qs -p ~/.local/share/hypr-app-switcher ipc call app-switcher next"), { description = "Switch applications on active workspace" })
@@ -82,6 +109,10 @@ hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_S
 hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
+hl.bind("XF86Calculator", hl.dsp.exec_cmd(calculator), {description = "Launch Calculator"})
+hl.bind("XF86Mail", hl.dsp.exec_cmd(email), {description = "Launch Email Client"})
+hl.bind("XF86HomePage", hl.dsp.exec_cmd(browser), {description = "Launch Web Browser"})
+hl.bind(mainMod .. " + L ", hl.dsp.exec_cmd("hyprlock"), { description = "Lock Screen" })
 
 -- Requires playerctl
 hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })
