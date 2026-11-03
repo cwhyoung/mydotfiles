@@ -8,6 +8,7 @@ import QtQuick
 import Quickshell.Io
 import "CustomTheme"
 import qs.CustomTheme
+import "WallpaperApp"
 
 ShellRoot {
     id: root
@@ -28,7 +29,7 @@ PanelWindow {
                          }
 
     implicitHeight: background.implicitHeight //Theme.prefSepHeight
-   //color: Theme.colBg 
+   //color: Theme.colBg
 
     RowLayout {
         Layout.alignment: Qt.AlignLeft
