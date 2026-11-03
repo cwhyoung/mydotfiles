@@ -27,7 +27,7 @@ PanelWindow {
     margins {
         left: 2
         right: 2
-        top: 2
+        top: 50
     }
 
     color: "transparent" //Theme.colBg || "transparent"
