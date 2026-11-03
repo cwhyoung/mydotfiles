@@ -52,7 +52,7 @@ Row {
 
         Rectangle {
             width: 2
-            height: Theme.prefSepHeight
+            height: Theme.prefSepHeight + 4
             anchors.verticalCenter: parent.verticalCenter
             color: Theme.colPurple
         }
