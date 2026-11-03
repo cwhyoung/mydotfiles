@@ -27,7 +27,7 @@ PanelWindow {
                         bottom: 2
                          }
 
-    implicitHeight: Theme.prefSepHeight
+    implicitHeight: background.implicitHeight //Theme.prefSepHeight
    //color: Theme.colBg || "transparent"
 
     RowLayout {
