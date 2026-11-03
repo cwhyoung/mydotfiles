@@ -38,7 +38,7 @@ Rectangle {
             implicitWidth: buttons.implicitWidth
             implicitHeight: buttons.implicitHeight
             radius: height / 2
-            color:  Theme.colBg  || "transparent"
+            color:  Theme.primary_container  || "transparent"
 
 Row {
             padding: 4
