@@ -22,6 +22,8 @@ hl.bind(mainMod .. " + P", hl.dsp.window.pseudo(), {description = "Toggle window
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }), { description = "Toggle Fullscreen" })
 hl.bind(mainMod .. " + M", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }), { description = "Toggle Maximize Window" })
+hl.bind(mainMod .. " + SHIFT + M", hl.dsp.layout("addmaster"), { description = "Addmaster to Master layout" })
+hl.bind(mainMod .. " + SHIFT + N", hl.dsp.layout("removemaster"), { description = "Remove master to Master layout" })
 hl.bind(mainMod .. " + T", hl.dsp.window.float({ action = "toggle" }), { description = "Toggle Floating" })
 hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd("~/.config/ml4w/scripts/ml4w-toggle-allfloat"), { description = "Toggle floating for all windows of workspace" })
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"), { description = "Toggle split dwindle only" })
@@ -37,10 +39,12 @@ hl.bind(mainMod .. " + ALT + left", hl.dsp.window.swap({ direction = "l" }), { d
 hl.bind(mainMod .. " + ALT + right", hl.dsp.window.swap({ direction = "r" }), { description = "Swap tiled window right" })
 hl.bind(mainMod .. " + ALT + up", hl.dsp.window.swap({ direction = "u" }), { description = "Swap tiled window up" })
 hl.bind(mainMod .. " + ALT + down", hl.dsp.window.swap({ direction = "d" }), { description = "Swap tiled window down" })
-hl.bind(mainMod .. " + CTRL + A", hl.dsp.exec_cmd("~/.config/hypr/scripts/layout-switch.sh columns"), { description = "Column Layout" })
-hl.bind(mainMod .. " + CTRL + S", hl.dsp.exec_cmd("~/.config/hypr/scripts/layout-switch.sh dwindle"), { description = "Dwindle Layout" })
-hl.bind(mainMod .. " + CTRL + Z", hl.dsp.exec_cmd("~/.config/hypr/scripts/layout-switch.sh master"), { description = "Master Layout" })
-hl.bind(mainMod .. " + CTRL + X", hl.dsp.exec_cmd("~/.config/hypr/scripts/layout-switch.sh scrolling"), { description = "Scrolling Layout" })
+
+hl.bind(mainMod .. " + CTRL + A", function() hl.config({ general = { layout = "columns" } }) end, { description = "Columns Layout"})
+hl.bind(mainMod .. " + CTRL + G", function() hl.config({ general = { layout = "grid" } }) end, {description = "Grid Layout"})
+hl.bind(mainMod .. " + CTRL + S", function() hl.config({ general = { layout = "dwindle" } }) end, {description = "Dwindle Layout"})
+hl.bind(mainMod .. " + CTRL + Z", function() hl.config({ general = { layout = "master" } }) end, { description = "Master Layout" })
+hl.bind(mainMod .. " + CTRL + X", function() hl.config({ general = { layout = "scrollingr" } }) end, { description = "Scrolling Layout" })
 
 
 
@@ -49,14 +53,14 @@ hl.bind(mainMod .. " + CTRL + X", hl.dsp.exec_cmd("~/.config/hypr/scripts/layout
 hl.bind(mainMod .. " + CTRL + K", hl.dsp.exec_cmd("~/.config/hypr/scripts/keybindings.sh"), { description = "Show keybindings" })
 hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("hyprlock"), { description = "Lock Screen" })
 
-hl.bind(mainMod .." + Tab", function ()
-    local layouts   = { "scrolling", "dwindle", "master", "monocle" }
+hl.bind(mainMod .." + TAB", function ()
+    local layouts   = { "scrolling", "dwindle", "master", "columns" }
     local workspace = hl.get_active_workspace()
     if hl.get_active_special_workspace() then
         workspace = hl.get_active_special_workspace()
     end
 
-    local next_layout = "dwindle"
+    local next_layout = "grid"
 
     if not workspace then
         return
@@ -79,7 +83,7 @@ end)
 
 
 -- Hypr App Switcher
-hl.bind("ALT + Tab",         hl.dsp.exec_cmd("qs -p ~/.local/share/hypr-app-switcher ipc call app-switcher next"), { description = "Switch applications on active workspace" })
+hl.bind("ALT + TAB",         hl.dsp.exec_cmd("qs -p ~/.local/share/hypr-app-switcher ipc call app-switcher next"), { description = "Switch applications on active workspace" })
 hl.bind("ALT + SHIFT + Tab", hl.dsp.exec_cmd("qs -p ~/.local/share/hypr-app-switcher ipc call app-switcher prev"), { description = "Switch applications on active workspace (backwards)" })
 
 -- Switch workspaces with mainMod + [0-9]
@@ -87,7 +91,7 @@ hl.bind("ALT + SHIFT + Tab", hl.dsp.exec_cmd("qs -p ~/.local/share/hypr-app-swit
 for i = 1, 10 do
     local key = i % 10 -- 10 maps to key 0
     hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = i}), {description = "Show Workspace x number"})
-    hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i }), {description = "Move app to x workspace"})
+    hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i, follow = false}), {description = "Move app to x workspace"})
 end
 
 -- Example special workspace (scratchpad)
