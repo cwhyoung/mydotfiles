@@ -67,9 +67,19 @@ PanelWindow {
                 onClicked: Quickshell.execDetached(["bash", "-c", "systemctl hibernate"])
             }
                BarButton {
+                id: inhibitbutton
+                property bool inhibit_active: false
                 iconSrc: "shared/icons/theme.svg"
                 tooltipText: "Inhibit Sleep"
-                onClicked: Quickshell.execDetached(["bash", "-c", "hypridle --inhibit-sleep 0"])
+                    onClicked: {
+                        inhibit_active = !inhibit_active
+                        if (inhibit_active) {
+                            Quickshell.execDetached(["bash", "-c", "/usr/bin/hyprcaffeine on infinite"])
+                        } else {
+                            Quickshell.execDetached(["bash", "-c", "/usr/bin/hyprcaffeine off"])
+                        }
+                    }
+                color: inhibit_active ? Theme.primary_container : "transparent"
             }
             BarButton {
                 iconSrc: "shared/icons/logout.svg"
