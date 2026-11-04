@@ -42,8 +42,8 @@ PanelWindow {
         color:  Theme.surface_bright  || "transparent"
         border.color: Theme.primary_container || "transparent"
         border.width: 6
-        
-        
+
+
 
         Column {
             padding: 15
@@ -54,12 +54,12 @@ PanelWindow {
             BarButton {
                 iconSrc: "shared/icons/power.svg"
                 tooltipText: "Power Off"
-                onClicked: Quickshell.execDetached(["bash", "-c", "poweroff"])
+                onClicked: Quickshell.execDetached(["bash", "-c", "hyprshutdown -t 'Shutting down' --post-cmd 'poweroff'"])
             }
             BarButton {
                 iconSrc: "shared/icons/reboot.svg"
                 tooltipText: "Reboot"
-                onClicked: Quickshell.execDetached(["bash", "-c", "reboot"])
+                onClicked: Quickshell.execDetached(["bash", "-c", "hyprshutdown -t 'Restarting...' --post-cmd 'reboot'"])
             }
             BarButton {
                 iconSrc: "shared/icons/suspend.svg"
@@ -69,12 +69,12 @@ PanelWindow {
                BarButton {
                 iconSrc: "shared/icons/theme.svg"
                 tooltipText: "Inhibit Sleep"
-                onClicked: Quickshell.execDetached(["bash", "-c", "hypridle --inhibit"])
+                onClicked: Quickshell.execDetached(["bash", "-c", "hypridle --inhibit-sleep 0"])
             }
             BarButton {
                 iconSrc: "shared/icons/logout.svg"
                 tooltipText: "Logout"
-                onClicked: Quickshell.execDetached(["bash", "-c", "pkill hypr"])
+                onClicked: Quickshell.execDetached(["bash", "-c", "hyprctl dispatch 'hl.dsp.exit()'"])
             }
             BarButton {
                 iconSrc: "shared/icons/lock.svg"
