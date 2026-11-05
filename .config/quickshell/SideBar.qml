@@ -75,7 +75,7 @@ PanelWindow {
                         if (Theme.inhibit_active) {
                             Quickshell.execDetached(["bash", "-c", "/usr/bin/hyprcaffeine on infinite && /usr/bin/hyprcaffeine monitor on" ])
                         } else {
-                            Quickshell.execDetached(["bash", "-c", "/usr/bin/hyprcaffeine off"])
+                            Quickshell.execDetached(["bash", "-c", "/usr/bin/hyprcaffeine off && /usr/bin/hyprcaffeine monitor off"])
                         }
                     }
                 color: Theme.inhibit_active ? Theme.primary_container_active : "transparent"
