@@ -31,6 +31,7 @@ QtObject {
  property string currentLayout: "Tile"
  property int prefSepHeight: 34
  property int sideBarVisible: 0
+ property bool inhibit_active: false
 
     // Dynamic color properties
     property color background: "#0e1514"

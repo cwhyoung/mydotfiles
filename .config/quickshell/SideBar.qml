@@ -68,18 +68,17 @@ PanelWindow {
             }
                BarButton {
                 id: inhibitbutton
-                property bool inhibit_active: false
-                iconSrc: "shared/icons/theme.svg"
+                iconSrc: Theme.inhibit_active ? "shared/icons/coffee-black-mug.svg" : "shared/icons/coffee-outline.svg"
                 tooltipText: "Inhibit Sleep"
                     onClicked: {
-                        inhibit_active = !inhibit_active
-                        if (inhibit_active) {
-                            Quickshell.execDetached(["bash", "-c", "/usr/bin/hyprcaffeine on infinite"])
+                        Theme.inhibit_active = !Theme.inhibit_active
+                        if (Theme.inhibit_active) {
+                            Quickshell.execDetached(["bash", "-c", "/usr/bin/hyprcaffeine on infinite && /usr/bin/hyprcaffeine monitor on" ])
                         } else {
                             Quickshell.execDetached(["bash", "-c", "/usr/bin/hyprcaffeine off"])
                         }
                     }
-                color: inhibit_active ? Theme.primary_container : "transparent"
+                color: Theme.inhibit_active ? Theme.primary_container_active : "transparent"
             }
             BarButton {
                 iconSrc: "shared/icons/logout.svg"
