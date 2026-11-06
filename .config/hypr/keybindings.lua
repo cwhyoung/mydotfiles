@@ -26,7 +26,7 @@ hl.bind(mainMod .. " + SHIFT + M", hl.dsp.layout("addmaster"), { description = "
 hl.bind(mainMod .. " + SHIFT + N", hl.dsp.layout("removemaster"), { description = "Remove a master from Master layout" })
 
 hl.bind(mainMod .. " + SHIFT + C", hl.dsp.layout("cyclenext"), { description = "Cycle to next window in Monocle Layout" })
-hl.bind(mainMod .. " + SHIFT + V", hl.dsp.layout("cycleprev"), { description = "Cycle to previois window in Monocle Layout" })
+hl.bind(mainMod .. " + SHIFT + V", hl.dsp.layout("cycleprev"), { description = "Cycle to previous window in Monocle Layout" })
 
 
 hl.bind(mainMod .. " + T", hl.dsp.window.float({ action = "toggle" }), { description = "Toggle Floating" })
