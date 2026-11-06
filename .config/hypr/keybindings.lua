@@ -40,11 +40,11 @@ hl.bind(mainMod .. " + ALT + right", hl.dsp.window.swap({ direction = "r" }), { 
 hl.bind(mainMod .. " + ALT + up", hl.dsp.window.swap({ direction = "u" }), { description = "Swap tiled window up" })
 hl.bind(mainMod .. " + ALT + down", hl.dsp.window.swap({ direction = "d" }), { description = "Swap tiled window down" })
 
-hl.bind(mainMod .. " + CTRL + A", function() hl.config({ general = { layout = "columns" } }) end, { description = "Columns Layout"})
-hl.bind(mainMod .. " + CTRL + G", function() hl.config({ general = { layout = "grid" } }) end, {description = "Grid Layout"})
+hl.bind(mainMod .. " + CTRL + A", function() hl.config({ general = { layout = "lua:columns" } }) end, { description = "Columns Layout"})
+hl.bind(mainMod .. " + CTRL + G", function() hl.config({ general = { layout = "lua:grid" } }) end, {description = "Grid Layout"})
 hl.bind(mainMod .. " + CTRL + S", function() hl.config({ general = { layout = "dwindle" } }) end, {description = "Dwindle Layout"})
 hl.bind(mainMod .. " + CTRL + Z", function() hl.config({ general = { layout = "master" } }) end, { description = "Master Layout" })
-hl.bind(mainMod .. " + CTRL + X", function() hl.config({ general = { layout = "scrollingr" } }) end, { description = "Scrolling Layout" })
+hl.bind(mainMod .. " + CTRL + X", function() hl.config({ general = { layout = "scrolling" } }) end, { description = "Scrolling Layout" })
 
 
 
@@ -54,7 +54,7 @@ hl.bind(mainMod .. " + CTRL + K", hl.dsp.exec_cmd("~/.config/hypr/scripts/keybin
 hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("hyprlock"), { description = "Lock Screen" })
 
 hl.bind(mainMod .." + TAB", function ()
-    local layouts   = { "scrolling", "dwindle", "master", "columns" }
+    local layouts   = { "scrolling", "dwindle", "master", "columns", "grid"}
     local workspace = hl.get_active_workspace()
     if hl.get_active_special_workspace() then
         workspace = hl.get_active_special_workspace()
