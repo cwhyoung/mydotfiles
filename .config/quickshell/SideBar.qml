@@ -22,20 +22,22 @@ PanelWindow {
         right: true
         top: true
         bottom: true
+        left: true
     }
 
-    margins {
-        left: 2
-        right: 2
-        top: 50
+    color: "transparent"
+
+    //Mouse clicks outside pill will close the window
+    MouseArea {
+        anchors.fill: parent
+        enabled: Theme.sideBarVisible
+        onClicked: Theme.sideBarVisible = false
     }
-
-    color: "transparent" //Theme.colBg || "transparent"
-
 
     Rectangle {
         id: background
-        anchors.centerIn: parent
+        x: parent.width - 100
+        anchors.verticalCenter: parent.verticalCenter
         implicitWidth: 50
         implicitHeight: buttons.implicitHeight
         radius: width / 2
@@ -43,7 +45,8 @@ PanelWindow {
         border.color: Theme.primary_container || "transparent"
         border.width: 6
 
-
+        //Swallow clicks on Menu to stop pill closing
+        MouseArea { anchors.fill: parent}
 
         Column {
             padding: 15
@@ -92,6 +95,4 @@ PanelWindow {
             }
         }
     }
-
-
 }
