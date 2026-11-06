@@ -48,6 +48,12 @@ PanelWindow {
         //Swallow clicks on Menu to stop pill closing
         MouseArea { anchors.fill: parent}
 
+        NumberAnimation {
+                id: slideAnim
+                duration: 4000
+                easing.type: Easing.OutQuint
+            }        
+
         Column {
             padding: 15
             spacing: 5
