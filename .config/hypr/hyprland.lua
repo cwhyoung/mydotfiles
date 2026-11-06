@@ -162,8 +162,10 @@ hl.config({
 -- See https://wiki.hypr.land/Configuring/Layouts/Master-Layout/ for more
 hl.config({
     master = {
-        new_status = "master",
+        new_status = "slave",  --was master - but i prefer new windows to be slave
         allow_small_split =true,
+        orientation = "left",
+        mfact = 0.55,
     },
 })
 
@@ -173,6 +175,14 @@ hl.config({
         fullscreen_on_one_column = true,
     },
 })
+
+-- See https://wiki.hypr.land/configuring/layouts/monocle-layout/ for more
+hl.config({
+    monocle = {
+    },
+})
+
+
 
 -- Layout of columns https://wiki.hypr.land/Configuring/Layouts/Custom-Layouts/
 hl.layout.register("columns", {
@@ -415,3 +425,5 @@ hl.window_rule({
     move  = "20 monitor_h-120",
     float = true,
 })
+
+require("hyprcaffeine-keybinds")

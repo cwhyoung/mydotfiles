@@ -22,8 +22,13 @@ hl.bind(mainMod .. " + P", hl.dsp.window.pseudo(), {description = "Toggle window
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }), { description = "Toggle Fullscreen" })
 hl.bind(mainMod .. " + M", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }), { description = "Toggle Maximize Window" })
-hl.bind(mainMod .. " + SHIFT + M", hl.dsp.layout("addmaster"), { description = "Addmaster to Master layout" })
-hl.bind(mainMod .. " + SHIFT + N", hl.dsp.layout("removemaster"), { description = "Remove master to Master layout" })
+hl.bind(mainMod .. " + SHIFT + M", hl.dsp.layout("addmaster"), { description = "Add a master to Master layout" })
+hl.bind(mainMod .. " + SHIFT + N", hl.dsp.layout("removemaster"), { description = "Remove a master from Master layout" })
+
+hl.bind(mainMod .. " + SHIFT + C", hl.dsp.layout("cyclenext"), { description = "Cycle to next window in Monocle Layout" })
+hl.bind(mainMod .. " + SHIFT + V", hl.dsp.layout("cycleprev"), { description = "Cycle to previois window in Monocle Layout" })
+
+
 hl.bind(mainMod .. " + T", hl.dsp.window.float({ action = "toggle" }), { description = "Toggle Floating" })
 hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd("~/.config/ml4w/scripts/ml4w-toggle-allfloat"), { description = "Toggle floating for all windows of workspace" })
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"), { description = "Toggle split dwindle only" })
@@ -45,6 +50,9 @@ hl.bind(mainMod .. " + CTRL + G", function() hl.config({ general = { layout = "l
 hl.bind(mainMod .. " + CTRL + S", function() hl.config({ general = { layout = "dwindle" } }) end, {description = "Dwindle Layout"})
 hl.bind(mainMod .. " + CTRL + Z", function() hl.config({ general = { layout = "master" } }) end, { description = "Master Layout" })
 hl.bind(mainMod .. " + CTRL + X", function() hl.config({ general = { layout = "scrolling" } }) end, { description = "Scrolling Layout" })
+hl.bind(mainMod .. " + CTRL + F", function() hl.config({ general = { layout = "monocle" } }) end, { description = "Monocle Layout" })
+hl.bind(mainMod .. " + CTRL + H", function() hl.config({ general = { layout = "lua:manual" } }) end, { description = "Manual Layout" })
+
 
 
 
