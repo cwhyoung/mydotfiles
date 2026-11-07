@@ -3,8 +3,6 @@ import Quickshell.Io
 import QtQuick
 import qs.CustomTheme
 
-
-
 // Memory usage module
 Text {
    property int memUsage: 0
@@ -24,17 +22,11 @@ Text {
         Component.onCompleted: running = true
     }
        
-
-
-
                         text: "  " + memUsage + "%"
                         color: Theme.colCyan
                         font.pixelSize: Theme.fontSize
                         font.family: Theme.fontFamily
-                        font.bold: true
-                        
-                    
-
+                        font.bold: false
 
 // Slow timer for system stats
     Timer {
@@ -46,5 +38,4 @@ Text {
         
         }
     }
-
     }

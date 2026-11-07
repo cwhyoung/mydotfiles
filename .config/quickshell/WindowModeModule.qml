@@ -4,9 +4,7 @@ import Quickshell.Io
 import QtQuick
 import qs.CustomTheme
 
-
-
-// Memory usage module
+// Window Mode module
 Text {
     property string currentLayout: "Tile"
 
@@ -31,31 +29,18 @@ Text {
                        layoutProc.running = true
         }
     }
-
      // Backup timer for window/layout (catches edge cases)
     Timer {
         interval: 200
         running: true
         repeat: true
         onTriggered: {
-          
-            layoutProc.running = true
+        layoutProc.running = true
         }
     }
-
-       
-
-
-
                         text: currentLayout
-                        color: Theme.colFg
-                        font.pixelSize: Theme.fontSize
+                        color: Theme.colWhite
+                        font.pixelSize: Theme.fontSize - 3
                         font.family: Theme.fontFamily
-                        font.bold: true
-                     
-                    
-
-
-
-
+                        font.bold: false
     }

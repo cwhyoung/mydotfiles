@@ -9,11 +9,10 @@ import qs.CustomTheme
 
 
    Rectangle {
+                        anchors.left: parent.left
                         Layout.preferredWidth: 1
                         Layout.preferredHeight: Theme.prefSepHeight
                         Layout.alignment: Qt.AlignVCenter
-                        Layout.leftMargin: 1
-                        Layout.rightMargin: 1
-                        color: Theme.colMuted
+                        color: Theme.colWhite
                     }
 

@@ -17,6 +17,7 @@ QtObject {
  property color colRed: "#f7768e"
  property color colYellow: "#e0af68"
  property color colBlue: "#7aa2f7"
+ property color colWhite: "#f5e2c5"
 
  // Font
  property string fontFamily: "SF Pro Display"
@@ -61,6 +62,7 @@ QtObject {
     property color outline_variant: "#3f4947"
     property color primary: "#81d5cd"
     property color primary_container: "#00504b"
+    property color modern_background: "#ef010605"
     property color primary_fixed: "#9df2e9"
     property color primary_fixed_dim: "#81d5cd"
     property color scrim: "#000000"

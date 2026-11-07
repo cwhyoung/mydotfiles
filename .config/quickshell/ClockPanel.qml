@@ -1,5 +1,6 @@
  import Quickshell
  import QtQuick
+ import qs.CustomTheme
 
 Text {
      id: clock
@@ -10,9 +11,9 @@ Text {
              }   
              
    text:"󰥔  " + Qt.formatDateTime(sysClock.date, "ddd, dd MMM yy - hh:mm AP")
-   color: "#f5e2c5"
+   color: Theme.colWhite
         font {
           weight: 600
-          family: "SF Pro Display"
-          pixelSize: 15}
+          family: Theme.fontFamily
+          pixelSize: Theme.fontSize}
 }

@@ -5,13 +5,10 @@ import Quickshell.Io
 import QtQuick
 import qs.CustomTheme
 
-
-
 // Active window module
 Row {
     id: root
     property string activeWindow: "Window"
-
 
       // Active window title
     Process {
@@ -44,18 +41,15 @@ Row {
           
             windowProc.running = true
         }
-    }
-
-       
-
+    }       
 
 Text {
                         text: activeWindow
-                        color: Theme.colFg
-                        font.pixelSize: Theme.fontSize - 4
+                        color: Theme.colWhite
+                        font.pixelSize: Theme.fontSize - 6
                         font.family: Theme.fontFamily
                         width: 400
-                        font.bold: true
+                        font.bold: false
                         maximumLineCount: 2
                         wrapMode: Text.WordWrap
 }

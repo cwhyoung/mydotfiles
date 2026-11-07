@@ -39,7 +39,8 @@ Rectangle {
             implicitWidth: buttons.implicitWidth
             implicitHeight: buttons.implicitHeight
             radius: height / 2
-            color:  Theme.primary_container  || "transparent"
+            color:  Theme.modern_background  || "transparent"
+            border.color: Theme.surface
 
 Row {
             padding: 4
@@ -50,17 +51,17 @@ Row {
         TerminalPanel { anchors.verticalCenter: parent.verticalCenter }
         Hyprws1Panel {anchors.verticalCenter: parent.verticalCenter }
         Rectangle {
-            width: 2
-            height: Theme.prefSepHeight + 4
+            width: 1
+            height: Theme.prefSepHeight
             anchors.verticalCenter: parent.verticalCenter
-            color: Theme.colPurple
+            color: Theme.colWhite
         }
         WindowModeModule { anchors.verticalCenter: parent.verticalCenter }
         Rectangle {
-            width: 2
+            width: 1
             height: Theme.prefSepHeight
             anchors.verticalCenter: parent.verticalCenter
-            color: Theme.colPurple
+            color: Theme.colWhite
         }
         ActiveWindowModule { anchors.verticalCenter: parent.verticalCenter }
 
@@ -72,11 +73,11 @@ Row {
     RowLayout {
         anchors.centerIn: parent
         Rectangle {
-            anchors.centerIn: parent
-            anchors.verticalCenter: verticalCenter.parent         
+            anchors.centerIn: parent      
             implicitWidth: centerrow.implicitWidth
             implicitHeight: centerrow.implicitHeight
-            color: '#ef010605'
+            color: Theme.modern_background
+            border.color: Theme.surface
             radius: height / 2
 
             Row {
@@ -96,31 +97,76 @@ Row {
 
     RowLayout {
         anchors.right: parent.right
-        spacing: 3
+        
+        Rectangle {
+            Layout.alignment: Qt.AlignRight       
+            implicitWidth: rightrow.implicitWidth
+            implicitHeight: rightrow.implicitHeight
+            color: Theme.modern_background
+            border.color: Theme.surface
+            radius: height / 2
 
-        VolumeModule {}
-        SepLine {}
-        SystemTrayPanel {}
-SepLine {}
-         KernelModule {}
-        SepLine {visible: UPower.displayDevice.percentage > 0}
-        BatteryModule {}
-        SepLine {}
-        StorageModule {}
-SepLine {}
-                MemoryModule {}
+            Row {
+                id: rightrow
+                anchors.right: parent.right
+                spacing: 6
+                padding: 8
 
-
-        SepLine {}
-
-        CpuPanel {}
-        SepLine {}
-        PowerModule {}
+                VolumeModule {anchors.verticalCenter: parent.verticalCenter }
+                Rectangle {
+                width: 1
+                height: Theme.prefSepHeight
+                anchors.verticalCenter: parent.verticalCenter
+                color: Theme.colWhite
+                }
+                SystemTrayPanel { anchors.verticalCenter: parent.verticalCenter }
+                Rectangle {
+                width: 1
+                height: Theme.prefSepHeight
+                anchors.verticalCenter: parent.verticalCenter
+                color: Theme.colWhite
+                }
+                KernelModule { anchors.verticalCenter: parent.verticalCenter }
+                Rectangle {
+                width: 1
+                height: Theme.prefSepHeight
+                anchors.verticalCenter: parent.verticalCenter
+                color: Theme.colWhite
+                visible: UPower.displayDevice.percentage > 0}
+                BatteryModule {anchors.verticalCenter: parent.verticalCenter }
+                Rectangle {
+                width: 1
+                height: Theme.prefSepHeight
+                anchors.verticalCenter: parent.verticalCenter
+                color: Theme.colWhite
+                }
+                StorageModule {anchors.verticalCenter: parent.verticalCenter }
+                Rectangle {
+                width: 1
+                height: Theme.prefSepHeight
+                anchors.verticalCenter: parent.verticalCenter
+                color: Theme.colWhite
+                }
+                MemoryModule {anchors.verticalCenter: parent.verticalCenter }
+                Rectangle {
+                width: 1
+                height: Theme.prefSepHeight
+                anchors.verticalCenter: parent.verticalCenter
+                color: Theme.colWhite
+                }
+                CpuPanel {anchors.verticalCenter: parent.verticalCenter }
+                Rectangle {
+                width: 1
+                height: Theme.prefSepHeight
+                anchors.verticalCenter: parent.verticalCenter
+                color: Theme.colWhite
+                }
+                PowerModule {anchors.verticalCenter: parent.verticalCenter }
+                }
+        }
     }
 }
 SideBar {
     id: sideBar
-    //visible: Theme.sideBarVisible
-
 }
 }

@@ -64,7 +64,7 @@ Rectangle {
     readonly property bool active: mouseArea.containsMouse || volume.focused
 
     implicitWidth: row.implicitWidth + 6
-    implicitHeight: 30
+    implicitHeight: 34
     radius: 15
 
     // Same accent-filled highlight as the other modules on hover/selection.
@@ -101,7 +101,6 @@ Rectangle {
         }
 
         Text {
-            Layout.alignment: Qt.AlignVCenter
             text: volume.percent + "%"
             color: volume.active ? Theme.background : Theme.primary
             font.family: Theme.fontFamily
