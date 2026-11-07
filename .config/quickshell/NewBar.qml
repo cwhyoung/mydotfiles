@@ -110,7 +110,7 @@ Row {
                 id: rightrow
                 anchors.right: parent.right
                 spacing: 6
-                padding: 6
+                padding: 4
 
                 VolumeModule {anchors.verticalCenter: parent.verticalCenter }
                 Rectangle {
