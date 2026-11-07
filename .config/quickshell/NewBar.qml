@@ -48,16 +48,13 @@ Row {
             id: buttons
 
         TerminalPanel { anchors.verticalCenter: parent.verticalCenter }
-
         Hyprws1Panel {anchors.verticalCenter: parent.verticalCenter }
-
         Rectangle {
             width: 2
             height: Theme.prefSepHeight + 4
             anchors.verticalCenter: parent.verticalCenter
             color: Theme.colPurple
         }
-
         WindowModeModule { anchors.verticalCenter: parent.verticalCenter }
         Rectangle {
             width: 2
@@ -65,7 +62,6 @@ Row {
             anchors.verticalCenter: parent.verticalCenter
             color: Theme.colPurple
         }
-
         ActiveWindowModule { anchors.verticalCenter: parent.verticalCenter }
 
         //}
@@ -75,12 +71,28 @@ Row {
 
     RowLayout {
         anchors.centerIn: parent
-        spacing: 3
+        Rectangle {
+            anchors.centerIn: parent
+            anchors.verticalCenter: verticalCenter.parent         
+            implicitWidth: centerrow.implicitWidth
+            implicitHeight: centerrow.implicitHeight
+            color: '#ef010605'
+            radius: height / 2
 
-        ClockPanel {}
-        SwayvncModule {}
-        CalendarPanel {}
+            Row {
+                id: centerrow
+                spacing: 6
+                padding: 6
+
+                AppLauncher { anchors.verticalCenter: parent.verticalCenter }
+                ClockPanel {anchors.verticalCenter: parent.verticalCenter}
+                SwayvncModule {anchors.verticalCenter: parent.verticalCenter}
+                CalendarPanel {anchors.verticalCenter: parent.verticalCenter}
+                }
+            }
     }
+
+
 
     RowLayout {
         anchors.right: parent.right
