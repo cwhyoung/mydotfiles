@@ -5,78 +5,45 @@ import Quickshell.Networking
 import QtQuick.Layouts
 import qs.CustomTheme
 
-  Row {
+Row {
+    id: root
+    spacing: 6
 
-property string networkName: "Disconnected"
-    property string networkIp: "No IP"
+    property var wifiDevice: Networking.devices.values.find(d => d.type === DeviceType.wifi)
+    property var active: wifiDevice ? wifiDevice.networks.values.find(n => n.connected) : null
 
-    Process {
-        id: networkStatusProc
-        command: [
-            "bash",
-            "-c",
-            "ssid=$(iwgetid -r 2>/dev/null || echo 'Disconnected'); ip=$(hostname -I 2>/dev/null | awk '{print $1}' || echo 'No IP'); printf 'SSID:%s\\nIP:%s\\n' \"$ssid\" \"$ip\""
-        ]
-        stdout: SplitParser {
-            onRead: data => {
-                if (!data)
-                    return;
+    readonly property real signal: active ? active.signalStrength : 0
 
-                const lines = data.split(/\r?\n/).filter((line) => line.length > 0);
-                for (const line of lines) {
-                    if (line.startsWith("SSID:"))
-                        networkName = line.slice(5).trim() || "Disconnected";
-                    else if (line.startsWith("IP:"))
-                        networkIp = line.slice(3).trim() || "No IP";
-                }
-            }
+    readonly property string icon: {
+        if (!Networking.wifiEnabled) return String.fromCodePoint(0xF05AA)
+        if (!active) return String.fromCodePoint(0xF092D)
+
+        let tier = signal >= 0.75 ? 4
+                 : signal >= 0.50 ? 3
+                 : signal >= 0.25 ? 2
+                 : 1
+        return String.fromCodePoint(0xF091F + (tier - 1) *3)
+    } 
+
+Text {
+         text: root.icon  
+         color: Networking.wifiEnabled ? Theme.colPurple : Theme.colWhite
+         font.weight: 600
+         font.family: "JetBrainsMono Nerd Font Propo" //Theme.fontFamily
+         font.pixelSize: Theme.fontSize
         }
-        Component.onCompleted: running = true
+Text {
+    text: {
+        if (!Networking.wifiEnabled) return "off"
+        if (!root.active) return "Disconnected"
+
+        return root.active.name
     }
-
-    Timer {
-        interval: 30000
-        running: true
-        repeat: true
-        onTriggered: networkStatusProc.running = true
+     color: Theme.colWhite
+    font {
+   
+    family: Theme.fontFamily
+    weight: 500
     }
-
-
-                SepLine {}
-                spacing: 6
-                anchors.centerIn: parent
-
-
-               
-
-
-
-
-
-
-                Rectangle {
-                    width: 8
-                    height: 8
-                    radius: 4
-                    color: networkName === "Disconnected" ? "#f7768e" : "#9ece6a"
-                    border.color: Theme.colBg || "#1a1b26"
-                    border.width: 1
-                }
-
-                Text {
-                    text: networkName === "Disconnected" ? "Offline" : networkName
-                    color: Theme.colFg || "#a9b1d6"
-                    font.pixelSize: 10
-                    font.family: Theme.fontFamily || "JetBrainsMono Nerd Font"
-                    elide: Text.ElideRight
-                    maximumLineCount: 1
-                }
-
-                Text {
-                    text: networkIp
-                    color: Theme.colMuted || "#444b6a"
-                    font.pixelSize: 10
-                    font.family: Theme.fontFamily || "JetBrainsMono Nerd Font"
-                    visible: networkIp !== "No IP"
-                }
-            }
+}
+}

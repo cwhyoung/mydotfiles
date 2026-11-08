@@ -18,8 +18,6 @@ Text {
                                 Component.onCompleted: running = true
                                 }
 
-
-
                         text: kernelVersion
                         color: Theme.colRed
                         width: 127

@@ -4,10 +4,6 @@ import QtQuick
 import QtQuick.Layouts
 import qs.CustomTheme
 
-
-
-
-
    Rectangle {
                         anchors.left: parent.left
                         Layout.preferredWidth: 1

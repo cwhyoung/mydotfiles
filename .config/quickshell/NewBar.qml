@@ -112,9 +112,10 @@ Row {
                 spacing: 6
                 padding: 4
 
-                //NetworkModule {}
+               
 
                 VolumeModule {anchors.verticalCenter: parent.verticalCenter }
+                 NetworkModule {}
                 Rectangle {
                 width: 1
                 height: Theme.prefSepHeight
@@ -129,6 +130,7 @@ Row {
                 color: Theme.modern_sepline
                 }
                 KernelModule { anchors.verticalCenter: parent.verticalCenter }
+                
                 Rectangle {
                 width: 1
                 height: Theme.prefSepHeight
