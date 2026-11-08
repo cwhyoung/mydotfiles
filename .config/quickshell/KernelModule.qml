@@ -1,27 +1,25 @@
 import Quickshell
 import Quickshell.Io
 import QtQuick
-import QtQuick.Layouts
 import qs.CustomTheme
 
 // Kernel version
-Row {
+Text {
   property string kernelVersion: "Unknown"
 
-Process {
-                       
+                    Process {
                         id: kernelProc
                         command: ["uname", "-r"]
                         stdout: SplitParser {
-                            onRead: data => {
-                                if (data) kernelVersion = data.trim()
-                                }
-                                }
+                                onRead: data => {
+                                    if (data) kernelVersion = data.trim()
+                                                  }
+                                              }
                                 Component.onCompleted: running = true
                                 }
-       
-    
-                    Text {
+
+
+
                         text: kernelVersion
                         color: Theme.colRed
                         width: 127
@@ -32,4 +30,3 @@ Process {
                         maximumLineCount: 2
                         wrapMode: Text.WordWrap
                     }
-    }
