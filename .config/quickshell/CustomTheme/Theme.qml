@@ -63,6 +63,7 @@ QtObject {
     property color primary: "#81d5cd"
     property color primary_container: "#00504b"
     property color modern_background: "#ef010605"
+    property color modern_sepline: '#836f7474'
     property color primary_fixed: "#9df2e9"
     property color primary_fixed_dim: "#81d5cd"
     property color scrim: "#000000"

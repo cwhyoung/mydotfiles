@@ -54,14 +54,14 @@ Row {
             width: 1
             height: Theme.prefSepHeight
             anchors.verticalCenter: parent.verticalCenter
-            color: Theme.colWhite
+            color: Theme.modern_sepline
         }
         WindowModeModule { anchors.verticalCenter: parent.verticalCenter }
         Rectangle {
             width: 1
             height: Theme.prefSepHeight
             anchors.verticalCenter: parent.verticalCenter
-            color: Theme.colWhite
+            color: Theme.modern_sepline
         }
         ActiveWindowModule { anchors.verticalCenter: parent.verticalCenter }
 
@@ -117,49 +117,49 @@ Row {
                 width: 1
                 height: Theme.prefSepHeight
                 anchors.verticalCenter: parent.verticalCenter
-                color: Theme.colWhite
+                color: Theme.modern_sepline
                 }
                 SystemTrayPanel { anchors.verticalCenter: parent.verticalCenter }
                 Rectangle {
                 width: 1
                 height: Theme.prefSepHeight
                 anchors.verticalCenter: parent.verticalCenter
-                color: Theme.colWhite
+                color: Theme.modern_sepline
                 }
                 KernelModule { anchors.verticalCenter: parent.verticalCenter }
                 Rectangle {
                 width: 1
                 height: Theme.prefSepHeight
                 anchors.verticalCenter: parent.verticalCenter
-                color: Theme.colWhite
+                color: Theme.modern_sepline
                 visible: UPower.displayDevice.percentage > 0}
                 BatteryModule {anchors.verticalCenter: parent.verticalCenter }
                 Rectangle {
                 width: 1
                 height: Theme.prefSepHeight
                 anchors.verticalCenter: parent.verticalCenter
-                color: Theme.colWhite
+                color: Theme.modern_sepline
                 }
                 StorageModule {anchors.verticalCenter: parent.verticalCenter }
                 Rectangle {
                 width: 1
                 height: Theme.prefSepHeight
                 anchors.verticalCenter: parent.verticalCenter
-                color: Theme.colWhite
+                color: Theme.modern_sepline
                 }
                 MemoryModule {anchors.verticalCenter: parent.verticalCenter }
                 Rectangle {
                 width: 1
                 height: Theme.prefSepHeight
                 anchors.verticalCenter: parent.verticalCenter
-                color: Theme.colWhite
+                color: Theme.modern_sepline
                 }
                 CpuPanel {anchors.verticalCenter: parent.verticalCenter }
                 Rectangle {
                 width: 1
                 height: Theme.prefSepHeight
                 anchors.verticalCenter: parent.verticalCenter
-                color: Theme.colWhite
+                color: Theme.modern_sepline
                 }
                 PowerModule {anchors.verticalCenter: parent.verticalCenter }
                 }
