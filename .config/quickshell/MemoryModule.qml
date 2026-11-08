@@ -21,7 +21,7 @@ Text {
         }
         Component.onCompleted: running = true
     }
-       
+
                         text: "  " + memUsage + "%"
                         color: Theme.colCyan
                         font.pixelSize: Theme.fontSize
@@ -35,7 +35,7 @@ Text {
         repeat: true
         onTriggered: {
                        memProc.running = true
-        
+
         }
     }
     }
