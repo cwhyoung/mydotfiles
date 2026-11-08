@@ -1,6 +1,7 @@
 import Quickshell
 import Quickshell.Io
 import QtQuick
+import Quickshell.Networking
 import QtQuick.Layouts
 import qs.CustomTheme
 

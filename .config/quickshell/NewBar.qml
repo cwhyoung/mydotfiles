@@ -112,6 +112,8 @@ Row {
                 spacing: 6
                 padding: 4
 
+                //NetworkModule {}
+
                 VolumeModule {anchors.verticalCenter: parent.verticalCenter }
                 Rectangle {
                 width: 1
@@ -165,8 +167,5 @@ Row {
                 }
         }
     }
-}
-SideBar {
-    id: sideBar
 }
 }
