@@ -63,7 +63,8 @@ Row {
             anchors.verticalCenter: parent.verticalCenter
             color: Theme.modern_sepline
         }
-        ActiveWindowModule { anchors.verticalCenter: parent.verticalCenter }
+        ActiveWindowModule { anchors.verticalCenter: parent.verticalCenter
+                                Layout.maximumWidth: 200}
 
         //}
     }
@@ -129,7 +130,9 @@ Row {
                 anchors.verticalCenter: parent.verticalCenter
                 color: Theme.modern_sepline
                 }
-                KernelModule { anchors.verticalCenter: parent.verticalCenter }
+                KernelModule { anchors.verticalCenter: parent.verticalCenter
+                Layout.maximumWidth: 50 }
+
 
                 Rectangle {
                 width: 1

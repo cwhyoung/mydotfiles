@@ -38,10 +38,10 @@ Row {
         running: true
         repeat: true
         onTriggered: {
-          
+
             windowProc.running = true
         }
-    }       
+    }
 
 Text {
                         text: activeWindow
