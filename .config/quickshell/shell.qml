@@ -115,7 +115,7 @@ Row {
 
 
                 VolumeModule {anchors.verticalCenter: parent.verticalCenter }
-                 NetworkModule {}
+                 NetworkModuleWip {}
                 Rectangle {
                 width: 1
                 height: Theme.prefSepHeight

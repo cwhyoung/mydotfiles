@@ -130,7 +130,12 @@ Text {
          font.family: "JetBrainsMono Nerd Font Propo" //Theme.fontFamily
          font.pixelSize: Theme.fontSize
         }
-Text {
+
+
+Column {
+    spacing: 0
+
+    Text {
     visible: !!root.activeWifi
     text: {
         return root.activeWifi.name
@@ -139,25 +144,25 @@ Text {
     font {
 
     family: Theme.fontFamily
-    weight: 500
-}
-}
-Text {
-    text: root.wiredConnectionName + "\n"
-
-    visible: !!root.wiredInterface
-    color: Theme.colWhite
-    font.family: Theme.fontFamily
-    font.weight: 500
+    weight: 500 }
 }
 
-Text {
-    text: root.activeInterfaceName + "\n"
-        ? "↓ " + root.formatRate(root.downloadBytesPerSecond) + "  ↑ " + root.formatRate(root.uploadBytesPerSecond)
-        : ""
-    visible: !!root.activeInterfaceName
-    color: Theme.colWhite
-    font.family: Theme.fontFamily
-    font.weight: 500
+    Text {
+        text: root.wiredConnectionName
+        visible: !!root.wiredInterface
+        color: Theme.colWhite
+        font.family: Theme.fontFamily
+        font.weight: 500
+    }
+
+    Text {
+        text: root.activeInterfaceName
+            ? "↓ " + root.formatRate(root.downloadBytesPerSecond) + "  ↑ " + root.formatRate(root.uploadBytesPerSecond)
+            : ""
+        visible: !!root.activeInterfaceName
+        color: Theme.colWhite
+        font.family: Theme.fontFamily
+        font.weight: 500
+    }
 }
 }

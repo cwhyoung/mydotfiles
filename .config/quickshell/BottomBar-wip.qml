@@ -35,16 +35,15 @@ PanelWindow {
         Layout.alignment: Qt.AlignLeft
 Rectangle {
             id: background
-            Layout.alignment: Qt.AlignLeft
-            implicitWidth: buttons.implicitWidth
+            Layout.alignment: Qt.AlignCenter
+            implicitWidth: buttons.implicitWidth + 20
             implicitHeight: buttons.implicitHeight
             radius: height / 2
             color:  Theme.modern_background  || "transparent"
             border.color: Theme.surface
 
 Row {
-            padding: 4
-            spacing: 6
+            spacing: 4
             anchors.left: parent.left
             id: buttons
 
