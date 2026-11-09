@@ -20,5 +20,5 @@ Text {
     //width: 40
     font.family: Theme.fontFamily
     maximumLineCount: 2
-    wrapMode: Text.Wordwrap
+    wrapMode: Text.WordWrap
 }

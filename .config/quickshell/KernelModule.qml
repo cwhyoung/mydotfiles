@@ -20,7 +20,7 @@ Text {
 
                         text: kernelVersion
                         color: Theme.colRed
-                        width: 127
+                        //width: 127
                         font.pixelSize: Theme.fontSize - 4
                         font.family: Theme.fontFamily
                         font.bold: false

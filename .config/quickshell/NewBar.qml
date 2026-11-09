@@ -73,7 +73,7 @@ Row {
     RowLayout {
         anchors.centerIn: parent
         Rectangle {
-            anchors.centerIn: parent      
+            Layout.alignment: Qt.AlignCenter
             implicitWidth: centerrow.implicitWidth
             implicitHeight: centerrow.implicitHeight
             color: Theme.modern_background
@@ -97,9 +97,9 @@ Row {
 
     RowLayout {
         anchors.right: parent.right
-        
+
         Rectangle {
-            Layout.alignment: Qt.AlignRight       
+            Layout.alignment: Qt.AlignRight
             implicitWidth: rightrow.implicitWidth
             implicitHeight: rightrow.implicitHeight
             color: Theme.modern_background
@@ -112,7 +112,7 @@ Row {
                 spacing: 6
                 padding: 4
 
-               
+
 
                 VolumeModule {anchors.verticalCenter: parent.verticalCenter }
                  NetworkModule {}
@@ -130,7 +130,7 @@ Row {
                 color: Theme.modern_sepline
                 }
                 KernelModule { anchors.verticalCenter: parent.verticalCenter }
-                
+
                 Rectangle {
                 width: 1
                 height: Theme.prefSepHeight
