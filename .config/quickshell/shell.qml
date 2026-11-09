@@ -112,10 +112,14 @@ Row {
                 spacing: 6
                 padding: 4
 
-
-
+                NetworkModuleWip {}
+                Rectangle {
+                width: 1
+                height: Theme.prefSepHeight
+                anchors.verticalCenter: parent.verticalCenter
+                color: Theme.modern_sepline
+                }
                 VolumeModule {anchors.verticalCenter: parent.verticalCenter }
-                 NetworkModuleWip {}
                 Rectangle {
                 width: 1
                 height: Theme.prefSepHeight
