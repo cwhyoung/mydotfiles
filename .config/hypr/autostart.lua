@@ -8,7 +8,6 @@
 -- Or execute your favorite apps at launch like this:
 --
  hl.on("hyprland.start", function ()
-   hl.exec_cmd("nm-applet")
    hl.exec_cmd("quickshell -p ~/mydotfiles/.config/quickshell/NewBar.qml & hyprpaper &")
    hl.exec_cmd("$HOME/.config/hypr/hypr-wallpaper.sh")
    hl.exec_cmd("hypridle")
