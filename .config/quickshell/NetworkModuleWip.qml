@@ -137,6 +137,7 @@ Column {
 
     Text {
     visible: !!root.activeWifi
+    anchors.right: parent.right
     text: {
         return root.activeWifi.name
     }
@@ -149,6 +150,7 @@ Column {
 
     Text {
         text: root.wiredConnectionName
+        anchors.right: parent.right
         visible: !!root.wiredInterface
         color: Theme.colWhite
         font.family: Theme.fontFamily
