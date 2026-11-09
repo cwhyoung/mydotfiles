@@ -9,7 +9,7 @@ Row {
     id: root
     spacing: 6
 
-    property var wifiDevice: Networking.devices.values.find(d => d.type === DeviceType.wifi)
+    property var wifiDevice: Networking.devices.values.find(d => d.type === DeviceType.Wifi)
     property var active: wifiDevice ? wifiDevice.networks.values.find(n => n.connected) : null
 
     readonly property real signal: active ? active.signalStrength : 0
@@ -23,10 +23,10 @@ Row {
                  : signal >= 0.25 ? 2
                  : 1
         return String.fromCodePoint(0xF091F + (tier - 1) *3)
-    } 
+    }
 
 Text {
-         text: root.icon  
+         text: root.icon
          color: Networking.wifiEnabled ? Theme.colPurple : Theme.colWhite
          font.weight: 600
          font.family: "JetBrainsMono Nerd Font Propo" //Theme.fontFamily
@@ -41,7 +41,7 @@ Text {
     }
      color: Theme.colWhite
     font {
-   
+
     family: Theme.fontFamily
     weight: 500
     }
