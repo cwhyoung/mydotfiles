@@ -107,6 +107,10 @@ Row {
             radius: height / 2
 
             Row {
+                Text {
+                    text: "  "
+                }
+
                 id: rightrow
                 anchors.right: parent.right
                 spacing: 6
