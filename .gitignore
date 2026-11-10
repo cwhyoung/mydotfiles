@@ -1,3 +1,4 @@
 .config/hypr/monitors.lua
 .config/hypr/hyprland.lua-old
 monitors.lua
+hyprpaper.conf
