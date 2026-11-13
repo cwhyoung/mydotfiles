@@ -13,4 +13,5 @@
    hl.exec_cmd("/usr/lib/pam_kwallet_init")
    hl.exec_cmd("qdbus6 org.kde.kwalletd6 /modules/kwalletd6 org.kde.KWallet.open kdewallet 0 login")
    hl.exec_cmd("$HOME/.config/hypr/hypr-wallpaper.sh")
- end)
+   hl.exec_cmd("$HOME/.config/hypr/caff-off.sh")
+end)
