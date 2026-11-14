@@ -113,8 +113,8 @@ Row {
 
                 id: rightrow
                 anchors.right: parent.right
-                spacing: 6
-                padding: 4
+                spacing: 4
+                padding: 1
 
                 NetworkModuleWip {}
                 Rectangle {
